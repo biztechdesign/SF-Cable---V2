@@ -148,9 +148,12 @@
     .top-bar {
       background: var(--dark);
       color: rgba(255,255,255,.7);
-      font-size: 13px;
+      font-size: 15px;
+      font-weight: 500;
       padding: 5px 0;
       border-bottom: 1px solid rgba(255,255,255,.08);
+      display: flex;
+      align-items: center;
     }
     .top-bar .container {
       display: flex; align-items: center; justify-content: space-between; gap: 8px;
@@ -172,7 +175,7 @@
     .top-bar-right .top-bar-item { padding: 0 12px; }
     .top-bar-right .top-bar-item:last-child { padding-right: 0; }
     .top-bar-right .top-bar-item a {
-      color: rgba(255,255,255,.75); font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,.75); font-size: 15px; font-weight: 500;
       transition: color var(--transition);
     }
     .top-bar-right .top-bar-item a:hover { color: var(--white); }
@@ -513,25 +516,22 @@
       padding: 18px 0 0;
     }
     .quick-pick-inner {
-      display: flex; align-items: center; gap: 14px;
-      flex-wrap: nowrap;
-      background:
-        linear-gradient(180deg, rgba(45,166,225,.06) 0%, rgba(45,166,225,.02) 100%),
-        radial-gradient(circle at 20% 50%, rgba(45,166,225,.08) 0%, transparent 60%),
-        radial-gradient(circle at 85% 50%, rgba(8,42,74,.05) 0%, transparent 60%),
-        #fafcff;
+      display: flex; align-items: center; gap: 10px 14px;
+      flex-wrap: wrap;
+      background: rgba(45,166,225,.18);
       border: 1px solid var(--gray-300);
       border-radius: var(--radius-lg);
-      padding: 8px 18px;
+      padding: 10px 18px;
     }
     .qp-tab { padding: 6px 14px; }
     .quick-pick-label {
       font-weight: 700; color: var(--dark); font-size: 17px;
       display: inline-flex; align-items: center; gap: 6px;
+      flex-shrink: 0;
     }
     .quick-pick-label i { color: var(--red); }
     .quick-pick-menu {
-      display: flex; gap: 8px; flex: 1; flex-wrap: nowrap;
+      display: flex; gap: 8px; flex: 1; flex-wrap: wrap;
       align-items: center; justify-content: flex-end;
       overflow: visible;
       list-style: none; padding: 0; margin: 0;
@@ -539,18 +539,17 @@
     .qp-item { position: relative; }
     .qp-tab {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 16px; border: 1.5px solid var(--gray-300);
+      padding: 8px 16px; border: 1.5px solid var(--red);
       border-radius: 999px; font-size: 15px; font-weight: 600;
-      color: var(--dark); background: #fff; cursor: pointer;
+      color: var(--red); background: var(--red-light); cursor: pointer;
       white-space: nowrap;
       transition: all .2s;
     }
     .qp-tab i { font-size: 15px; }
-    .qp-tab .qp-caret { width: 14px; height: 14px; margin-left: 2px; opacity: .6; transition: transform var(--transition); }
+    .qp-tab .qp-caret { width: 14px; height: 14px; margin-left: 2px; opacity: .7; transition: transform var(--transition); }
     .qp-item:hover > .qp-tab,
     .qp-item.is-open > .qp-tab {
-      border-color: var(--red); color: var(--red);
-      background: var(--red-light);
+      background: var(--red); color: #fff; border-color: var(--red);
     }
     .qp-item:hover > .qp-tab .qp-caret,
     .qp-item.is-open > .qp-tab .qp-caret { transform: rotate(180deg); opacity: 1; }
@@ -607,6 +606,18 @@
       font-size: 15px; color: var(--dark);
     }
     .qp-submenu-2 a:hover { background: var(--gray-100); color: var(--red); }
+    @media (max-width: 1100px) {
+      .quick-pick-label {
+        width: 100%; flex-basis: 100%;
+      }
+      .quick-pick-menu {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        flex: none;
+      }
+    }
     @media (max-width: 900px) {
       .quick-pick-inner {
         flex-direction: column; align-items: stretch;
@@ -633,7 +644,7 @@
       .qp-submenu-2 { display: none !important; }
       .qp-item:hover > .qp-tab,
       .qp-item.is-open > .qp-tab {
-        border-color: var(--gray-300); background: #fff; color: var(--dark);
+        background: var(--red); color: #fff; border-color: var(--red);
       }
     }
     /* Footer 3-column override */
@@ -868,7 +879,7 @@
       .footer-badge        { padding: 3px 5px !important; flex: 0 1 auto; min-width: 0; }
       .footer-badge img    { height: 16px !important; max-width: 100%; width: auto; object-fit: contain; }
       .footer-badge--bbb   { gap: 3px !important; padding: 3px 5px !important; }
-      .footer-badge--bbb img { height: 18px !important; }
+      .footer-badge--bbb img { height: 16px !important; }
       .footer-badge-meta   { display: none !important; }
       /* Payment icons single row */
       .footer-payments     { flex-wrap: nowrap !important; gap: 4px; justify-content: center; width: 100%; overflow: hidden; }
@@ -880,14 +891,14 @@
       .footer-badge-group  { gap: 3px !important; }
       .footer-badge        { padding: 2px 3px !important; }
       .footer-badge img    { height: 14px !important; }
-      .footer-badge--bbb img { height: 16px !important; }
+      .footer-badge--bbb img { height: 14px !important; }
     }
     @media (max-width: 320px) {
       .footer-badge-group  { gap: 2px !important; }
       .footer-badge        { padding: 2px !important; }
       .footer-badge img    { height: 12px !important; }
       .footer-badge--bbb   { padding: 2px !important; gap: 2px !important; }
-      .footer-badge--bbb img { height: 14px !important; }
+      .footer-badge--bbb img { height: 12px !important; }
       .payment-icon        { padding: 3px 4px; font-size: 12px !important; }
       .footer-payments     { gap: 2px; }
     }
@@ -1211,7 +1222,8 @@
       border-radius: var(--radius-lg); overflow: visible;
       transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s cubic-bezier(.4,0,.2,1), border-color 0.3s ease;
       position: relative;
-      display: flex; flex-direction: column; height: 100%;
+      display: flex; flex-direction: column;
+      height: 100%; align-self: stretch;
     }
     .product-card:hover {
       box-shadow: 0 12px 40px rgba(45,166,225,.18); border-color: var(--red);
@@ -1252,6 +1264,10 @@
     #products-grid .product-info, #feat-track .product-info {
       border-radius: 0 0 var(--radius-lg) var(--radius-lg);
       padding-bottom: 12px;
+    }
+    #products-grid .product-price,
+    #feat-track .product-price {
+      align-content: flex-start;
     }
 
     /* Badges */
@@ -1304,23 +1320,27 @@
     /* Product info area */
     .product-info {
       padding: 10px 12px 8px; background: var(--white);
-      display: flex; flex-direction: column; flex: 1 1 auto;
+      display: grid;
+      grid-template-rows: 55px auto auto;
+      align-content: start;
+      flex: 1 1 auto;
     }
     .product-name {
       font-size: 18px; font-weight: 700; color: var(--dark); margin: 0 0 4px;
-      line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical; overflow: hidden;
-      text-overflow: ellipsis; word-break: break-word;
-      min-height: calc(1.4em * 2);
+      line-height: 1.4; overflow: hidden;
     }
-    .product-name a { color: inherit; transition: color 0.2s ease; }
+    .product-name a {
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+      overflow: hidden; text-overflow: ellipsis; word-break: break-word;
+      color: inherit; transition: color 0.2s ease;
+    }
     .product-name a:hover { color: var(--red); }
     .product-rating { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
     .stars { display: inline-flex; gap: 2px; font-size: 13px; }
     .stars svg.lucide { fill: #f59e0b; stroke: #f59e0b; width: 1em; height: 1em; }
     .stars .star-empty svg.lucide, .stars .star-empty { fill: none !important; stroke: var(--gray-300) !important; }
     .rating-count { font-size: 15px; color: var(--gray-500); }
-    .product-price { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: auto; }
+    .product-price { display: flex; align-items: baseline; align-content: flex-start; column-gap: 8px; row-gap: 2px; flex-wrap: wrap; }
     .price-current { font-size: 18px; font-weight: 800; color: var(--dark); }
     .price-old { font-size: 15px; color: var(--gray-500); text-decoration: line-through; }
     .price-save { font-size: 15px; color: #15803d; font-weight: 600; }
@@ -1639,7 +1659,7 @@
     .deal-2 .deal-card-bg { background: url('images/join.png') right center/cover no-repeat; }
     .deal-2 .deal-card-overlay { background: linear-gradient(100deg, rgba(8,42,74,.97) 0%, rgba(8,42,74,.82) 48%, rgba(8,42,74,.12) 100%); }
     .deal-tag {
-      color: var(--yellow); font-size: 12px; font-weight: 700;
+      color: var(--yellow); font-size: 14px; font-weight: 700;
       text-transform: uppercase; letter-spacing: 1.5px;
       margin-bottom: 10px; display: flex; align-items: center; gap: 7px;
     }
@@ -1947,7 +1967,7 @@
     .footer-badge:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
     .footer-badge img { height: 38px; width: auto; display: block; }
     .footer-badge--bbb { gap: 10px; padding: 6px 12px; }
-    .footer-badge--bbb img { height: 44px; }
+    .footer-badge--bbb img { height: 38px; }
     .footer-badge-meta {
       display: flex; flex-direction: column; line-height: 1.2;
       font-size: 15px; color: #1f2937; font-weight: 600; text-align: left;
@@ -2073,7 +2093,10 @@
       .top-bar-item a      { font-size: 15px; }
       /* Hero */
       .hero                { padding: 0 12px; }
-      .hero-inner          { padding: 36px 20px 32px; }
+      .hero-inner          { padding: 36px 20px 32px; justify-content: center; }
+      .hero-content        { text-align: center; }
+      .hero-actions        { justify-content: center; }
+      .hero-trust-line     { justify-content: center; }
       .hero-badge          { font-size: 15px; padding: 5px 10px; }
       .hero-btn-secondary  { height: 50px; padding: 0 20px; font-size: 15px; }
       .hero-dots           { bottom: 16px; gap: 8px; }
@@ -2095,6 +2118,7 @@
       .product-hover-bar   { display: none; }
       .product-img-wrap    { height: 180px; padding: 18px; }
       .product-img-wrap img { max-height: 150px; }
+      .product-info        { grid-template-rows: 46px auto auto; }
       /* Reviews */
       .reviews-layout      { grid-template-columns: 1fr; }
       .reviews-left        { position: static; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 16px; }
@@ -2169,7 +2193,7 @@
       .products-grid       { grid-template-columns: 1fr 1fr; gap: 10px; }
       .product-img-wrap    { height: 180px; padding: 6px; }
       .product-img-wrap img { max-height: 100%; }
-      .product-info        { padding: 8px 10px 4px; }
+      .product-info        { padding: 8px 10px 4px; grid-template-rows: 46px auto auto; }
       .product-name        { font-size: 16px; margin-bottom: 2px; line-height: 1.35; font-weight: 700; }
       .product-rating      { margin-bottom: 2px; }
       .stars               { font-size: 13px; }
@@ -2177,7 +2201,7 @@
       .price-current       { font-size: 14px; }
       .price-old           { font-size: 13px; }
       .price-save          { font-size: 13px; }
-      .product-price       { margin-top: 4px; gap: 0px 4px; }
+      .product-price       { column-gap: 4px; row-gap: 2px; }
       .product-footer      { padding: 8px 12px 10px; gap: 6px; }
       .fav-btn             { width: 36px; height: 36px; font-size: 15px; }
       .add-to-cart,
@@ -2249,7 +2273,7 @@
       .footer-badges       { align-items: center; justify-content: center; text-align: center; }
       .footer-badge-group  { justify-content: center; gap: 14px; }
       .footer-badge img    { height: 32px; }
-      .footer-badge--bbb img { height: 38px; }
+      .footer-badge--bbb img { height: 32px; }
       /* Section */
       .section             { padding: 22px 0; }
       .section-sm          { padding: 16px 0; }
@@ -2299,7 +2323,7 @@
       .product-img-wrap    { height: 160px; padding: 4px; }
       .product-img-wrap img { max-height: 100%; }
       .product-info        { padding: 6px 8px 4px; }
-      .product-name        { font-size: 16px; margin-bottom: 2px; -webkit-line-clamp: 2; min-height: calc(1.35em * 2); line-height: 1.35; font-weight: 700; }
+      .product-name        { font-size: 16px; margin-bottom: 2px; line-height: 1.35; font-weight: 700; }
       .product-rating      { margin-bottom: 2px; }
       .stars               { font-size: 13px; }
       .rating-count        { font-size: 15px; }
@@ -2373,14 +2397,14 @@
       /* Products */
       .products-grid       { gap: 5px; }
       .product-img-wrap    { height: 90px; padding: 6px; }
-      .product-name        { font-size: 16px; font-weight: 700; -webkit-line-clamp: 2; }
+      .product-name        { font-size: 16px; font-weight: 700; }
       .product-info        { padding: 6px 8px 4px; }
       .stars               { font-size: 12px; }
       .rating-count        { font-size: 13px; }
       .price-current       { font-size: 13px; }
       .price-old           { font-size: 12px; }
       .price-save          { font-size: 12px; }
-      .product-price       { margin-top: 3px; gap: 0 3px; }
+      .product-price       { column-gap: 3px; row-gap: 2px; }
       .add-to-cart,
       .view-details        { height: 28px; font-size: 11px; padding: 0 4px; }
       .fav-btn             { width: 28px; height: 28px; }
@@ -2424,7 +2448,7 @@
     .product-action-btn svg.lucide { width: 15px; height: 15px; }
     .fav-btn svg.lucide { width: 18px; height: 18px; }
     .add-to-cart svg.lucide { width: 16px; height: 16px; }
-    .deal-tag svg.lucide { width: 13px; height: 13px; }
+    .deal-tag svg.lucide { width: 15px; height: 15px; }
     .bulk-value-icon svg.lucide { width: 28px; height: 28px; }
     .section-view-link svg.lucide { width: 14px; height: 14px; }
     .mega-panel-seeall svg.lucide { width: 14px; height: 14px; }
@@ -2434,7 +2458,7 @@
     /* ── New header layout ── */
     /* Top bar: centered single row */
     .top-bar-inner {
-      display: flex; align-items: center; justify-content: center; gap: 0; flex: 1;
+      display: flex; align-items: center; justify-content: center; gap: 0; flex: 1; min-height: 28px;
     }
     .top-bar .container { justify-content: space-between; }
     .top-bar-separator {
@@ -2469,6 +2493,7 @@
     .nav-action-cart { padding-right: 0; }
     .nav-actions-sep { width: 1px; background: rgba(255,255,255,.18); margin: 10px 0; align-self: stretch; flex-shrink: 0; }
     .nav-action-link.nav-action-cart > .nav-action-icon-wrap svg.lucide { color: var(--blue); width: 34px; height: 34px; }
+    .nav-action-link.nav-action-cart:hover > .nav-action-icon-wrap svg.lucide { color: var(--white); }
     .nav-action-icon-wrap { position: relative; display: flex; }
     .nav-cart-count {
       position: absolute; top: -6px; right: -8px;
@@ -2498,7 +2523,7 @@
       <div class="top-bar-left">
         <span class="top-bar-item">
           <i data-lucide="truck"></i>
-          <strong>Free Shipping</strong> on orders over <strong>$75</strong>
+          Free Shipping on orders over $75
         </span>
       </div>
       <div class="top-bar-right">
@@ -3259,6 +3284,22 @@
         </div>
         <div class="categories-track-wrap">
           <div class="categories-grid" id="categoriesTrack2">
+            <a href="/power-cords.html" class="category-card">
+              <div class="cat-img-wrap"><img src="images/cat-powercord.jpg" alt="Power Cord"></div>
+              <div class="cat-text"><h3>Power Cords</h3><span class="cat-count">180+ Products</span></div>
+            </a>
+            <a href="/network-cables.html" class="category-card">
+              <div class="cat-img-wrap"><img src="images/cat-network.jpg" alt="Network Cable"></div>
+              <div class="cat-text"><h3>Network Cables</h3><span class="cat-count">300+ Products</span></div>
+            </a>
+            <a href="/adapters-connectors.html" class="category-card">
+              <div class="cat-img-wrap"><img src="images/car-connect.jpg" alt="USB-C Adapter"></div>
+              <div class="cat-text"><h3>Adapters &amp; Connectors</h3><span class="cat-count">400+ Products</span></div>
+            </a>
+            <a href="/extension-cords.html" class="category-card">
+              <div class="cat-img-wrap"><img src="images/cat- extension cord.jpg" alt="Extension Cord"></div>
+              <div class="cat-text"><h3>Extension Cords</h3><span class="cat-count">55+ Products</span></div>
+            </a>
             <a href="/hdmi-cables.html" class="category-card">
               <div class="cat-img-wrap"><img src="images/cat-hdmi.jpg" alt="HDMI Cable"></div>
               <div class="cat-text"><h3>HDMI Cables</h3><span class="cat-count">150+ Products</span></div>
@@ -3267,21 +3308,9 @@
               <div class="cat-img-wrap"><img src="images/cat-usb.jpg" alt="USB Cable"></div>
               <div class="cat-text"><h3>USB Cables</h3><span class="cat-count">200+ Products</span></div>
             </a>
-            <a href="/network-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-network.jpg" alt="Network Cable"></div>
-              <div class="cat-text"><h3>Network Cables</h3><span class="cat-count">300+ Products</span></div>
-            </a>
             <a href="/fiber-optics.html" class="category-card">
               <div class="cat-img-wrap"><img src="images/Cat-fo.jpg" alt="Fiber Optic Cable"></div>
               <div class="cat-text"><h3>Fiber Optics</h3><span class="cat-count">120+ Products</span></div>
-            </a>
-            <a href="/power-cords.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-powercord.jpg" alt="Power Cord"></div>
-              <div class="cat-text"><h3>Power Cords</h3><span class="cat-count">180+ Products</span></div>
-            </a>
-            <a href="/adapters-connectors.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/car-connect.jpg" alt="USB-C Adapter"></div>
-              <div class="cat-text"><h3>Adapters &amp; Connectors</h3><span class="cat-count">400+ Products</span></div>
             </a>
             <a href="/audio-video.html" class="category-card">
               <div class="cat-img-wrap"><img src="images/cat-avcable.jpg" alt="Audio Video Cable"></div>
@@ -3302,10 +3331,6 @@
             <a href="/serial-data-cables.html" class="category-card">
               <div class="cat-img-wrap"><img src="images/cat-data.jpg" alt="Serial Data Cable"></div>
               <div class="cat-text"><h3>Serial &amp; Data</h3><span class="cat-count">80+ Products</span></div>
-            </a>
-            <a href="/extension-cords.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat- extension cord.jpg" alt="Extension Cord"></div>
-              <div class="cat-text"><h3>Extension Cords</h3><span class="cat-count">55+ Products</span></div>
             </a>
           </div>
         </div>
@@ -3859,7 +3884,7 @@
               <div class="deal-tag" style="color:#93c5fd;"><i data-lucide="gift"></i> SF Cable Rewards</div>
               <h3>Join &amp; Save More</h3>
               <p>Earn points on every order and redeem them for discounts and member perks.</p>
-              <span class="deal-cta deal-cta-ghost">Join Free <i data-lucide="arrow-right"></i></span>
+              <span class="deal-cta deal-cta-primary">Join Free <i data-lucide="arrow-right"></i></span>
             </div>
           </a>
         </div>
@@ -4329,6 +4354,7 @@
         viewMoreLink.innerHTML = meta.label + ' <i data-lucide="arrow-right"></i>';
         lucide.createIcons({ nodes: [viewMoreLink] });
       }
+      setTimeout(equalizeProductCardHeights, 350);
     }
     tabs.forEach(tab => {
       tab.addEventListener('click', () => activateTab(tab));
@@ -4558,10 +4584,44 @@
       });
     })();
 
+    /* ── Equal-height product cards ─────────────────────────────────
+       Ensures every card in #products-grid and #feat-track is the
+       same height, regardless of name length or price structure.
+    ──────────────────────────────────────────────────────────────── */
+    function equalizeProductCardHeights() {
+      ['#products-grid', '#feat-track'].forEach(function(sel) {
+        var container = document.querySelector(sel);
+        if (!container) return;
+        var cards = Array.from(container.querySelectorAll('.product-card'));
+        var visible = cards.filter(function(c) { return c.offsetParent !== null && c.style.display !== 'none'; });
+        // Reset so we measure natural heights
+        visible.forEach(function(c) { c.style.minHeight = ''; });
+        if (!visible.length) return;
+        // Find tallest card
+        var maxH = 0;
+        visible.forEach(function(c) { if (c.offsetHeight > maxH) maxH = c.offsetHeight; });
+        // Pin all cards to that height
+        if (maxH > 0) visible.forEach(function(c) { c.style.minHeight = maxH + 'px'; });
+      });
+    }
+
+    // Run once images are loaded (natural heights are final)
+    window.addEventListener('load', equalizeProductCardHeights);
+
+    // Re-run on resize (debounced)
+    var _eqTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(_eqTimer);
+      _eqTimer = setTimeout(equalizeProductCardHeights, 150);
+    });
+
     /* Initialise all Lucide icons */
     lucide.createIcons({
       attrs: { 'stroke-width': '1.5', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }
     });
+
+    // Also run after icons are rendered (they can shift layout)
+    setTimeout(equalizeProductCardHeights, 200);
   </script>
 
 </body>
