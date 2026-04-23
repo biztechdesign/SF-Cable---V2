@@ -539,9 +539,9 @@
     .qp-item { position: relative; }
     .qp-tab {
       display: inline-flex; align-items: center; gap: 6px;
-      padding: 8px 16px; border: 1.5px solid var(--red);
+      padding: 8px 16px; border: 1.5px solid var(--dark);
       border-radius: 999px; font-size: 15px; font-weight: 600;
-      color: var(--red); background: var(--red-light); cursor: pointer;
+      color: var(--dark); background: var(--white); cursor: pointer;
       white-space: nowrap;
       transition: all .2s;
     }
@@ -825,23 +825,24 @@
     }
     /* Footer accordion on mobile */
     .footer-acc-icon {
-      display: none;
+      display: none !important;
       margin-left: auto;
-      width: 16px; height: 16px;
+      width: 18px; height: 18px;
       transition: transform .25s ease;
       flex-shrink: 0;
+      color: rgba(255,255,255,.7);
     }
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .footer-col { border-bottom: 1px solid rgba(255,255,255,.12); }
       .footer-col:last-child { border-bottom: none; }
       .footer-col h4 {
         display: flex; align-items: center; justify-content: space-between;
         cursor: pointer;
-        margin: 0 !important;
-        padding: 14px 0;
+        margin: 0 0 8px 0 !important;
+        padding: 13px 0 5px;
         user-select: none;
       }
-      .footer-col .footer-acc-icon { display: inline-block; }
+      .footer-col .footer-acc-icon { display: inline-flex !important; color: rgba(255,255,255,.7); }
       .footer-col.open .footer-acc-icon { transform: rotate(180deg); }
       .footer-col .footer-links,
       .footer-col .footer-contact,
@@ -862,44 +863,69 @@
         padding-bottom: 14px;
         padding-top: 4px;
       }
-      .footer-grid { gap: 0 !important; }
+      .footer-grid { gap: 0 36px !important; align-items: start; }
+    }
+    /* 2-col tablet: row spacing */
+    @media (min-width: 481px) and (max-width: 900px) {
+      .footer-grid > *:nth-child(4) { border-top: 1px solid rgba(255,255,255,.12); padding-top: 8px; border-bottom: none; }
+      .footer-grid > *:nth-child(5) { border-top: 1px solid rgba(255,255,255,.12); padding-top: 8px; border-bottom: none; }
+      .footer-contact li { margin-bottom: 4px; }
     }
     /* Footer badges/logos single row on mobile */
-    @media (max-width: 480px) {
-      .footer-badges       { flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+    @media (max-width: 500px) {
+      .footer-badges       { flex-direction: row !important; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 8px; width: 100%; }
       .footer-badge-group  {
         display: flex !important;
         flex-wrap: nowrap !important;
         justify-content: center;
         align-items: center;
-        gap: 4px !important;
-        width: 100%;
-        overflow: hidden;
+        gap: 6px !important;
+        width: auto;
+        flex-shrink: 1;
       }
-      .footer-badge        { padding: 3px 5px !important; flex: 0 1 auto; min-width: 0; }
-      .footer-badge img    { height: 16px !important; max-width: 100%; width: auto; object-fit: contain; }
-      .footer-badge--bbb   { gap: 3px !important; padding: 3px 5px !important; }
-      .footer-badge--bbb img { height: 16px !important; }
+      .footer-badge        { padding: 4px 6px !important; flex: 0 1 auto; min-width: 0; }
+      .footer-badge img    { height: 24px !important; max-width: none; width: auto; object-fit: contain; }
+      .footer-badge--bbb   { gap: 4px !important; padding: 4px 6px !important; }
+      .footer-badge--bbb img { height: 24px !important; }
       .footer-badge-meta   { display: none !important; }
+      .footer-reviews      { padding: 5px 8px; gap: 6px; flex-shrink: 0; }
+      .footer-reviews-stars { font-size: 9px; letter-spacing: .5px; }
+      .footer-reviews-text strong { font-size: 11px; }
+      .footer-reviews-text span   { font-size: 9px; letter-spacing: .3px; }
       /* Payment icons single row */
-      .footer-payments     { flex-wrap: nowrap !important; gap: 4px; justify-content: center; width: 100%; overflow: hidden; }
-      .payment-icon        { padding: 4px 6px; font-size: 12px !important; flex: 0 1 auto; min-width: 0; letter-spacing: 0; white-space: nowrap; }
+      .footer-payments     { flex-wrap: wrap; gap: 4px; justify-content: center; width: 100%; }
+      .payment-icon svg    { width: 42px; height: 27px; }
+    }
+    @media (max-width: 420px) {
+      .footer-badges       { gap: 6px; }
+      .footer-badge-group  { gap: 4px !important; }
+      .footer-badge        { padding: 3px 5px !important; }
+      .footer-badge img    { height: 22px !important; }
+      .footer-badge--bbb img { height: 22px !important; }
+      .footer-yotpo-img    { height: 34px; width: auto; }
     }
     @media (max-width: 360px) {
       .footer-payments     { gap: 3px; }
-      .payment-icon        { padding: 3px 5px; font-size: 12px !important; border-radius: 3px; }
+      .payment-icon svg    { width: 36px; height: 23px; }
+      .footer-badges       { gap: 5px; }
       .footer-badge-group  { gap: 3px !important; }
-      .footer-badge        { padding: 2px 3px !important; }
-      .footer-badge img    { height: 14px !important; }
-      .footer-badge--bbb img { height: 14px !important; }
+      .footer-badge        { padding: 3px 4px !important; }
+      .footer-badge img    { height: 20px !important; }
+      .footer-badge--bbb img { height: 20px !important; }
+      .footer-yotpo-img    { height: 28px; }
+      .footer-reviews      { padding: 4px 6px; gap: 4px; }
+      .footer-reviews-text strong { font-size: 10px; }
+      .footer-reviews-text span   { font-size: 8px; }
     }
     @media (max-width: 320px) {
+      .footer-badges       { gap: 4px; }
       .footer-badge-group  { gap: 2px !important; }
-      .footer-badge        { padding: 2px !important; }
-      .footer-badge img    { height: 12px !important; }
-      .footer-badge--bbb   { padding: 2px !important; gap: 2px !important; }
-      .footer-badge--bbb img { height: 12px !important; }
-      .payment-icon        { padding: 3px 4px; font-size: 12px !important; }
+      .footer-badge        { padding: 2px 3px !important; }
+      .footer-badge img    { height: 18px !important; }
+      .footer-badge--bbb   { padding: 2px 3px !important; gap: 2px !important; }
+      .footer-badge--bbb img { height: 18px !important; }
+      .footer-yotpo-img    { height: 24px; }
+      .payment-icon svg    { width: 32px; height: 20px; }
       .footer-payments     { gap: 2px; }
     }
     /* Utility bar chat pill */
@@ -1646,7 +1672,7 @@
     }
     .deal-card {
       border-radius: var(--radius-xl); overflow: hidden; position: relative;
-      min-height: 260px; display: flex; align-items: center; padding: 44px 48px;
+      min-height: 300px; display: flex; align-items: center; padding: 44px 48px;
       text-decoration: none;
       transition: transform .25s ease, box-shadow .25s ease;
     }
@@ -1654,16 +1680,19 @@
     .deal-card-bg { position: absolute; inset: 0; z-index: 0; }
     .deal-card-overlay { position: absolute; inset: 0; z-index: 1; }
     .deal-card-content { position: relative; z-index: 2; max-width: 340px; }
-    .deal-1 .deal-card-bg { background: url('images/buymore.jpg') right center/cover no-repeat; }
-    .deal-1 .deal-card-overlay { background: linear-gradient(100deg, rgba(8,42,74,.97) 0%, rgba(8,42,74,.82) 48%, rgba(8,42,74,.12) 100%); }
-    .deal-2 .deal-card-bg { background: url('images/join.png') right center/cover no-repeat; }
-    .deal-2 .deal-card-overlay { background: linear-gradient(100deg, rgba(8,42,74,.97) 0%, rgba(8,42,74,.82) 48%, rgba(8,42,74,.12) 100%); }
+    .deal-1 .deal-card-bg { background: url('images/dealbanner1.png') center/cover no-repeat; }
+    .deal-1 .deal-card-overlay { background: none; }
+    .deal-2 .deal-card-bg { background: url('images/dealbanner2.png') center/cover no-repeat; }
+    .deal-2 .deal-card-overlay { background: none; }
     .deal-tag {
-      color: var(--yellow); font-size: 14px; font-weight: 700;
+      font-size: 13px; font-weight: 700; color: var(--yellow);
       text-transform: uppercase; letter-spacing: 1.5px;
-      margin-bottom: 10px; display: flex; align-items: center; gap: 7px;
+      margin-bottom: 12px; display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(0,0,0,.5); backdrop-filter: blur(6px);
+      padding: 5px 11px; border-radius: 20px;
     }
-    .deal-tag i { font-size: 13px; }
+    .deal-2 .deal-tag { color: #93c5fd; }
+    .deal-tag i { font-size: 12px; }
     .deal-card h3 { color: var(--white); font-size: 30px; font-weight: 800; margin-bottom: 10px; line-height: 1.15; }
     .deal-card p  { color: rgba(255,255,255,.82); font-size: 16px; margin-bottom: 24px; line-height: 1.55; max-width: 280px; }
     .deal-cta {
@@ -1672,11 +1701,8 @@
       font-size: 15px; font-weight: 700; letter-spacing: .2px;
       transition: all .2s ease; text-decoration: none;
     }
-    .deal-cta-primary {
-      background: var(--red); color: var(--white);
-      box-shadow: 0 4px 16px rgba(229,57,53,.35);
-    }
-    .deal-cta-primary:hover { background: #c62828; box-shadow: 0 6px 22px rgba(229,57,53,.5); transform: translateY(-1px); }
+    .deal-cta-primary { background: var(--red); color: var(--white); }
+    .deal-cta-primary:hover { background: #c62828; transform: translateY(-1px); }
     .deal-cta-ghost {
       background: rgba(255,255,255,.12); color: var(--white);
       border: 1.5px solid rgba(255,255,255,.3);
@@ -1684,13 +1710,64 @@
     .deal-cta-ghost:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.55); transform: translateY(-1px); }
     .deal-floating-badge {
       position: absolute; top: 22px; right: 24px; z-index: 3;
-      width: 72px; height: 72px; border-radius: 50%;
-      background: var(--red); display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      box-shadow: 0 6px 20px rgba(0,0,0,.28);
+      width: 90px; height: 90px;
+      display: flex; align-items: center; justify-content: center;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.5));
     }
-    .deal-floating-badge span:first-child { color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
-    .deal-floating-badge span:last-child  { color: var(--white); font-size: 26px; font-weight: 800; line-height: 1; }
+    .deal-floating-badge svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .deal-floating-badge--ribbon { height: 112px; top: 16px; }
+    .deal-floating-badge--ribbon svg { overflow: visible; }
+    /* dis-badge SVG with text overlay */
+    .deal-dis-badge {
+      filter: drop-shadow(0 8px 28px rgba(0,0,0,.65)) drop-shadow(0 0 16px rgba(180,20,20,.5));
+    }
+    .deal-dis-badge-img {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+    }
+    .deal-dis-badge-text {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      pointer-events: none; gap: 1px; padding-top: 4px;
+    }
+    .deal-dis-badge-upto {
+      font-size: 9px; font-weight: 700; font-family: Arial, sans-serif;
+      color: rgba(255,255,255,.95); text-transform: uppercase;
+      letter-spacing: .18em; line-height: 1;
+    }
+    .deal-dis-badge-pct {
+      font-size: 26px; font-weight: 900; font-family: Arial, sans-serif;
+      color: #fff; line-height: 1.05; letter-spacing: -.5px;
+    }
+    .deal-dis-badge-off {
+      font-size: 8px; font-weight: 800; font-family: Arial, sans-serif;
+      color: rgba(255,255,255,.95); text-transform: uppercase;
+      letter-spacing: .32em; line-height: 1;
+    }
+    /* reward-badge SVG with text overlay */
+    .deal-reward-badge {
+      top: 22px;
+      filter: drop-shadow(0 8px 28px rgba(0,0,0,.65)) drop-shadow(0 0 16px rgba(180,20,100,.5));
+    }
+    .deal-reward-badge-img {
+      width: 100%; height: 100%; object-fit: contain; display: block;
+    }
+    .deal-reward-badge-text {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: flex-start;
+      pointer-events: none; gap: 1px;
+      padding-top: 22px;
+    }
+    .deal-reward-badge-earn {
+      font-size: 9px; font-weight: 700; font-family: Arial, sans-serif;
+      color: rgba(255,255,255,.95); text-transform: uppercase;
+      letter-spacing: .2em; line-height: 1;
+    }
+    .deal-reward-badge-pts {
+      font-size: 28px; font-weight: 900; font-family: Arial, sans-serif;
+      color: #fff; line-height: 1.05; letter-spacing: -.5px;
+    }
 
     /* ============================================================
        INDUSTRY USE CASES
@@ -1858,22 +1935,23 @@
     /* ============================================================
        FOOTER
     ============================================================ */
-    .site-footer { background: var(--dark); color: rgba(255,255,255,.7); padding: 24px 0 0; }
+    .site-footer { background: var(--dark); color: rgba(255,255,255,.7); padding: 48px 0 0; }
     .footer-grid {
-      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 28px;
-      padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,.15);
+      display: grid; grid-template-columns: 2.6fr 1fr 1fr 1fr 1.2fr; gap: 24px;
+      padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,.15);
     }
-    .footer-brand img { height: 42px; margin-bottom: 18px; filter: brightness(0) invert(1); opacity: .9; }
+    .footer-brand img { height: 38px; width: auto; margin-bottom: 12px; filter: brightness(0) invert(1); opacity: .9; }
     .footer-brand-name {
       font-size: 22px; font-weight: 800; color: var(--white);
       margin-bottom: 18px; display: none;
     }
-    .footer-brand p { font-size: 15px; line-height: 1.7; margin-bottom: 20px; max-width: 280px; }
+    .footer-brand p { font-size: 14px; line-height: 1.55; margin-bottom: 12px; max-width: 380px; }
+    .footer-brand-form { display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 380px; margin-bottom: 14px; }
     .footer-contact { display: flex; flex-direction: column; gap: 6px; }
-    .footer-contact a { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.7); font-size: 15px; transition: color var(--transition); }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,.7); font-size: 14px; transition: color var(--transition); }
     .footer-contact a:hover { color: var(--white); }
     .footer-contact a i { color: var(--red); width: 16px; }
-    .footer-social { display: flex; gap: 10px; margin-top: 12px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 12px; margin-bottom: 48px; }
     .social-btn {
       width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.08);
       display: flex; align-items: center; justify-content: center;
@@ -1883,13 +1961,13 @@
     .social-btn:hover { background: var(--red); color: var(--white); transform: translateY(-2px); }
     .footer-col h4 {
       color: var(--white); font-size: 15px; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;
+      text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;
     }
-    .footer-links { display: flex; flex-direction: column; gap: 5px; }
-    .footer-links a { font-size: 15px; color: rgba(255,255,255,.7); transition: color var(--transition); }
+    .footer-links { display: flex; flex-direction: column; gap: 6px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,.7); transition: color var(--transition); }
     .footer-links a:hover { color: var(--white); }
     .footer-bottom {
-      padding: 12px 0; display: flex; align-items: center;
+      padding: 10px 0; display: flex; align-items: center;
       justify-content: space-between; flex-wrap: wrap; gap: 12px;
     }
     .footer-bottom p { font-size: 15px; }
@@ -1897,11 +1975,12 @@
     .footer-bottom a:hover { color: var(--white); }
     .footer-payments { display: flex; align-items: center; gap: 8px; }
     .payment-icon {
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.15); border-radius: 4px;
-      padding: 4px 8px; font-size: 15px; color: rgba(255,255,255,.75);
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: 4px; overflow: hidden; line-height: 0;
     }
+    .payment-icon svg { width: 42px; height: 27px; }
     .footer-trust-strip {
-      background: rgba(0,0,0,.25); padding: 8px 0; text-align: center;
+      background: rgba(0,0,0,.25); padding: 6px 0; text-align: center;
       border-top: 1px solid rgba(255,255,255,.08);
     }
     .footer-trust-strip p { font-size: 13px; color: rgba(255,255,255,.65); }
@@ -1935,15 +2014,15 @@
     }
     .newsletter-inline:focus-within { border-color: var(--red); }
     .newsletter-input {
-      flex: 1; height: var(--control-h); padding: 0 14px;
+      flex: 1; height: 38px; padding: 0 12px;
       border: none; background: transparent;
-      color: var(--white); font-size: 15px; font-family: var(--font); outline: none;
+      color: var(--white); font-size: 14px; font-family: var(--font); outline: none;
       min-width: 0;
     }
     .newsletter-input::placeholder { color: rgba(255,255,255,.55); }
     .newsletter-btn {
-      white-space: nowrap; height: var(--control-h); border-radius: 0;
-      padding: 0 20px; flex-shrink: 0;
+      white-space: nowrap; height: 38px; border-radius: 0;
+      padding: 0 16px; flex-shrink: 0; font-size: 14px;
     }
     .newsletter-note {
       font-size: 13px; color: rgba(255,255,255,.55); margin: 0;
@@ -1953,11 +2032,11 @@
     /* Trust badges band */
     .footer-badges {
       display: flex; flex-wrap: wrap; align-items: center;
-      justify-content: space-between; gap: 18px;
-      padding: 14px 0; border-top: 1px solid rgba(255,255,255,.15); border-bottom: 1px solid rgba(255,255,255,.15);
+      justify-content: space-between; gap: 14px;
+      padding: 10px 0; border-top: 1px solid rgba(255,255,255,.15); border-bottom: 1px solid rgba(255,255,255,.15);
     }
     .footer-badge-group {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 18px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
     }
     .footer-badge {
       display: inline-flex; align-items: center; justify-content: center;
@@ -1965,9 +2044,10 @@
       transition: transform var(--transition), box-shadow var(--transition);
     }
     .footer-badge:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
-    .footer-badge img { height: 38px; width: auto; display: block; }
-    .footer-badge--bbb { gap: 10px; padding: 6px 12px; }
-    .footer-badge--bbb img { height: 38px; }
+    .footer-badge img { height: 26px; width: auto; display: block; }
+    .footer-badge[aria-label="BBB Accredited Business"] img { width: auto; object-fit: contain; }
+    .footer-badge--bbb { gap: 8px; padding: 5px 10px; }
+    .footer-badge--bbb img { height: 26px; }
     .footer-badge-meta {
       display: flex; flex-direction: column; line-height: 1.2;
       font-size: 15px; color: #1f2937; font-weight: 600; text-align: left;
@@ -1975,16 +2055,11 @@
     .footer-badge-meta .meta-link { color: #1d4ed8; text-decoration: underline; margin-top: 2px; }
 
     .footer-reviews {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15); border-radius: 8px;
-      padding: 7px 12px; color: rgba(255,255,255,.85);
-      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+      display: inline-flex; align-items: center;
+      transition: transform var(--transition), opacity var(--transition);
     }
-    .footer-reviews:hover { border-color: var(--red); background: rgba(255,255,255,.1); transform: translateY(-1px); }
-    .footer-reviews-stars { color: #fbbf24; font-size: 10px; letter-spacing: 1px; }
-    .footer-reviews-text { display: flex; flex-direction: column; line-height: 1.25; }
-    .footer-reviews-text strong { color: var(--white); font-size: 13px; font-weight: 700; }
-    .footer-reviews-text span { font-size: 12px; color: rgba(255,255,255,.7); text-transform: uppercase; letter-spacing: .5px; }
+    .footer-reviews:hover { transform: translateY(-2px); opacity: .9; }
+    .footer-yotpo-img { height: 52px; width: auto; display: block; }
 
     /* ============================================================
        BACK TO TOP
@@ -2008,12 +2083,21 @@
     /* --- Large desktop / narrow desktop --- */
     @media (max-width: 1100px) {
       .products-grid       { grid-template-columns: repeat(3, 1fr); }
-      .footer-grid         { grid-template-columns: 1fr 1fr 1fr; }
-      .footer-brand        { grid-column: span 3; }
+      .footer-grid         { grid-template-columns: repeat(4, 1fr); }
+      .footer-brand        { grid-column: span 4; }
+      .footer-brand p      { max-width: 100%; }
+      .footer-col h4       { margin-bottom: 2px; }
+      .footer-links        { gap: 0; }
+      .footer-brand-form   { margin-bottom: 0; }
+      .footer-social       { margin-top: 0; margin-bottom: 32px; }
       .industries-grid     { grid-template-columns: repeat(3, 1fr); }
       .header-mid          { gap: 24px; }
       .header-search-wrap  { max-width: none; }
       .bulk-inner          { gap: 36px; }
+      .deal-card           { padding: 36px 32px; }
+      .deal-card-content   { max-width: 46%; }
+      .deal-card h3        { font-size: 24px; }
+      .deal-card p         { font-size: 14px; margin-bottom: 18px; }
     }
 
     /* --- Tablet landscape --- */
@@ -2046,11 +2130,12 @@
       .why-grid            { grid-template-columns: 1fr; }
       .reviews-layout      { grid-template-columns: 260px 1fr; gap: 24px; }
       .industries-grid     { grid-template-columns: repeat(2, 1fr); }
-      .footer-grid         { grid-template-columns: 1fr 1fr; }
+      .footer-grid         { grid-template-columns: 1fr 1fr; column-gap: 36px; row-gap: 0; }
       .footer-brand        { grid-column: span 2; }
+      .footer-col h4       { margin-bottom: 0; }
       .footer-newsletter   { grid-template-columns: 1fr; gap: 20px; }
       .footer-newsletter-form { margin-left: 0; max-width: 100%; }
-      .footer-badges       { flex-direction: column; align-items: flex-start; gap: 18px; }
+      .footer-badges       { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 14px; }
       /* Usecase */
       .usecase-grid        { grid-template-columns: 1fr; }
       .usecase-sm-row      { grid-template-columns: 1fr 1fr; }
@@ -2073,7 +2158,14 @@
       .deal-card h3        { font-size: 24px; }
       .deal-card p         { font-size: 15px; margin-bottom: 20px; }
       .deal-floating-badge { width: 62px; height: 62px; top: 18px; right: 18px; }
-      .deal-floating-badge span:last-child { font-size: 22px; }
+      .deal-floating-badge--ribbon { height: 78px; top: 12px; }
+      .deal-dis-badge-pct  { font-size: 17px; }
+      .deal-dis-badge-upto { font-size: 7px; letter-spacing: .14em; }
+      .deal-dis-badge-off  { font-size: 6px; letter-spacing: .26em; }
+      .deal-reward-badge        { top: 18px; }
+      .deal-reward-badge-text   { padding-top: 15px; }
+      .deal-reward-badge-pts    { font-size: 19px; }
+      .deal-reward-badge-earn   { font-size: 7px; letter-spacing: .16em; }
       /* Slider */
       .slider-nav          { display: none; }
       /* Why */
@@ -2138,6 +2230,8 @@
       .section-header-row .section-view-link { flex: 0 0 auto; white-space: nowrap; }
       .cat-section-header  { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
       .cat-section-header .section-view-link { flex: 0 0 auto; white-space: nowrap; }
+      /* Deals — hide description on mobile */
+      .deal-card p         { display: none; }
     }
 
     /* --- Mobile --- */
@@ -2229,8 +2323,14 @@
       .deal-card p         { font-size: 15px; margin-bottom: 18px; max-width: 100%; }
       .deal-tag            { font-size: 11px; margin-bottom: 8px; }
       .deal-floating-badge { width: 58px; height: 58px; top: 16px; right: 16px; }
-      .deal-floating-badge span:first-child { font-size: 9px; }
-      .deal-floating-badge span:last-child  { font-size: 20px; }
+      .deal-floating-badge--ribbon { height: 72px; top: 12px; }
+      .deal-dis-badge-pct  { font-size: 16px; }
+      .deal-dis-badge-upto { font-size: 6px; letter-spacing: .12em; }
+      .deal-dis-badge-off  { font-size: 5.5px; letter-spacing: .22em; }
+      .deal-reward-badge        { top: 16px; }
+      .deal-reward-badge-text   { padding-top: 14px; }
+      .deal-reward-badge-pts    { font-size: 18px; }
+      .deal-reward-badge-earn   { font-size: 6px; letter-spacing: .14em; }
       .deal-cta            { padding: 10px 20px; font-size: 14px; }
       /* Why SF Cable */
       .why-stats           { grid-template-columns: 1fr 1fr; gap: 12px; }
@@ -2266,13 +2366,14 @@
       .footer-grid         { grid-template-columns: 1fr; gap: 28px; }
       .footer-brand        { grid-column: span 1; }
       .footer-brand p      { max-width: 100%; }
-      .footer-col h4       { font-size: 15px; margin-bottom: 12px; }
+      .footer-brand-form   { max-width: 340px; margin-bottom: 0; }
+      .footer-col h4       { font-size: 16px; margin-bottom: 0; }
       .footer-links a      { font-size: 15px; }
       .footer-bottom       { flex-direction: column; text-align: center; gap: 10px; }
       .footer-payments     { justify-content: center; flex-wrap: wrap; }
       .footer-badges       { align-items: center; justify-content: center; text-align: center; }
       .footer-badge-group  { justify-content: center; gap: 14px; }
-      .footer-badge img    { height: 32px; }
+      .footer-badge img    { height: 26px; }
       .footer-badge--bbb img { height: 32px; }
       /* Section */
       .section             { padding: 22px 0; }
@@ -2347,7 +2448,14 @@
       .deal-card h3        { font-size: 20px; }
       .deal-card p         { font-size: 14px; margin-bottom: 14px; }
       .deal-floating-badge { width: 50px; height: 50px; top: 12px; right: 12px; }
-      .deal-floating-badge span:last-child { font-size: 17px; }
+      .deal-floating-badge--ribbon { height: 62px; top: 8px; }
+      .deal-dis-badge-pct  { font-size: 14px; }
+      .deal-dis-badge-upto { font-size: 5.5px; letter-spacing: .1em; }
+      .deal-dis-badge-off  { font-size: 5px; letter-spacing: .18em; }
+      .deal-reward-badge        { top: 8px; }
+      .deal-reward-badge-text   { padding-top: 12px; }
+      .deal-reward-badge-pts    { font-size: 15px; }
+      .deal-reward-badge-earn   { font-size: 5.5px; letter-spacing: .12em; }
       .industries-grid     { grid-template-columns: 1fr; }
       .why-stats           { grid-template-columns: 1fr; }
       .section             { padding: 16px 0; }
@@ -2489,7 +2597,7 @@
     .nav-action-text { display: flex; flex-direction: column; line-height: 1.25; }
     .nav-action-label { font-size: 11px; color: rgba(255,255,255,.55); font-weight: 400; }
     .nav-action-value { font-size: 14px; font-weight: 700; color: var(--white); }
-    .nav-cart-price { color: var(--blue) !important; font-size: 17px; font-weight: 800; }
+    .nav-cart-price { color: var(--blue) !important; font-size: 22px; font-weight: 800; }
     .nav-action-cart { padding-right: 0; }
     .nav-actions-sep { width: 1px; background: rgba(255,255,255,.18); margin: 10px 0; align-self: stretch; flex-shrink: 0; }
     .nav-action-link.nav-action-cart > .nav-action-icon-wrap svg.lucide { color: var(--blue); width: 34px; height: 34px; }
@@ -2614,10 +2722,9 @@
             <a href="/cart" class="nav-action-link nav-action-cart">
               <span class="nav-action-icon-wrap">
                 <i data-lucide="shopping-cart"></i>
-                <span class="nav-cart-count" id="nav-cart-count" aria-live="polite">0</span>
+                <span class="nav-cart-count" id="nav-cart-count" aria-live="polite">2</span>
               </span>
               <span class="nav-action-text">
-                <span class="nav-action-label">2 Products</span>
                 <span class="nav-action-value nav-cart-price">$99.00</span>
               </span>
             </a>
@@ -3045,7 +3152,7 @@
     <section class="hero" aria-labelledby="hero-heading" aria-label="Homepage hero">
       <div class="hero-slider">
         <div class="hero-track" id="hero-track">
-          <div class="hero-slide" style="background-image:url('images/hero-banner.png');">
+          <div class="hero-slide" style="background-image:url('images/hero banner2.png');">
             <div class="container">
               <div class="hero-inner">
                 <div class="hero-content">
@@ -3463,7 +3570,7 @@
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/hdmi2.jpg" alt="HDMI to VGA Adapter">
+              <img src="images/HDMI to VGA Active Adapter.jpg" alt="HDMI to VGA Adapter">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/hdmi-to-vga-adapter.html">HDMI to VGA Active Adapter with Audio Port</a></h3>
@@ -3480,7 +3587,7 @@
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/hdmi3.png" alt="USB 3.0 Hub">
+              <img src="images/3.jpg" alt="USB 3.0 Hub">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/usb-3-hub-7-port.html">USB 3.0 7-Port Hub with Individual Switches</a></h3>
@@ -3829,7 +3936,7 @@
                   <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                   <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
                 </div>
-                <img src="images/Product16.jpg" alt="SCSI HPDB50 to DB25 Cable">
+                <img src="images/2.jpg" alt="SCSI HPDB50 to DB25 Cable">
               </div>
               <div class="product-info">
                 <h3 class="product-name"><a href="/scsi-cable.html">SCSI HPDB50 to DB25 Cable – 6 ft</a></h3>
@@ -3846,7 +3953,7 @@
                   <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                   <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
                 </div>
-                <img src="images/Product1.jpg" alt="IEC C13/C14 Power Extension">
+                <img src="images/pc1.jpg" alt="IEC C13/C14 Power Extension">
               </div>
               <div class="product-info">
                 <h3 class="product-name"><a href="/power-extension.html">IEC C13/C14 Power Extension – 10 ft</a></h3>
@@ -3868,7 +3975,14 @@
           <a href="/bulk-orders" class="deal-card deal-1">
             <div class="deal-card-bg"></div>
             <div class="deal-card-overlay"></div>
-            <div class="deal-floating-badge"><span>UP TO</span><span>40%</span></div>
+            <div class="deal-floating-badge deal-dis-badge" aria-label="Up to 40% off">
+              <img src="images/dis-badge.svg" class="deal-dis-badge-img" alt="" aria-hidden="true">
+              <div class="deal-dis-badge-text" aria-hidden="true">
+                <span class="deal-dis-badge-upto">Upto</span>
+                <span class="deal-dis-badge-pct">40%</span>
+                <span class="deal-dis-badge-off">OFF</span>
+              </div>
+            </div>
             <div class="deal-card-content">
               <div class="deal-tag"><i data-lucide="package"></i> Bulk Orders</div>
               <h3>Buy More, Save More</h3>
@@ -3879,9 +3993,15 @@
           <a href="/rewards" class="deal-card deal-2">
             <div class="deal-card-bg"></div>
             <div class="deal-card-overlay"></div>
-            <div class="deal-floating-badge" style="background:var(--blue);"><span>EARN</span><span>PTS</span></div>
+            <div class="deal-floating-badge deal-floating-badge--ribbon deal-reward-badge" aria-label="Earn reward points">
+              <img src="images/reward-badge.svg" class="deal-reward-badge-img" alt="" aria-hidden="true">
+              <div class="deal-reward-badge-text" aria-hidden="true">
+                <span class="deal-reward-badge-earn">Earn</span>
+                <span class="deal-reward-badge-pts">PTS</span>
+              </div>
+            </div>
             <div class="deal-card-content">
-              <div class="deal-tag" style="color:#93c5fd;"><i data-lucide="gift"></i> SF Cable Rewards</div>
+              <div class="deal-tag"><i data-lucide="gift"></i> SF Cable Rewards</div>
               <h3>Join &amp; Save More</h3>
               <p>Earn points on every order and redeem them for discounts and member perks.</p>
               <span class="deal-cta deal-cta-primary">Join Free <i data-lucide="arrow-right"></i></span>
@@ -4037,22 +4157,34 @@
   <footer class="site-footer" role="contentinfo">
     <div class="container">
 
-      <!-- Top band: integrated newsletter -->
-      <div class="footer-newsletter" aria-labelledby="newsletter-heading">
-        <div class="footer-newsletter-copy">
-          <h2 id="newsletter-heading">Sign Up for Newsletter</h2>
-          <p>Deals, new product drops, and shipping offers — straight to your inbox.</p>
-        </div>
-        <form class="footer-newsletter-form newsletter-form" aria-label="Newsletter signup">
-          <div class="newsletter-inline">
-            <input class="newsletter-input" type="email" placeholder="Work email address" aria-label="Email address" required />
-            <button type="submit" class="btn btn-primary newsletter-btn">Subscribe <i data-lucide="arrow-right"></i></button>
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="/" aria-label="SF Cable – Home">
+            <img src="https://www.sfcable.com/media/logo/stores/1/SF-Cable-official-logo.png" alt="SF Cable Logo" width="140" height="42" loading="lazy" onerror="this.style.display='none'" />
+          </a>
+          <p>Your trusted source for cables, connectors &amp; AV gear since 1996. Over 40,000 products in stock &amp; shipped fast.</p>
+          <form class="footer-brand-form newsletter-form" aria-label="Newsletter signup">
+            <div class="newsletter-inline">
+              <input class="newsletter-input" type="email" placeholder="Work email address" aria-label="Email address" required />
+              <button type="submit" class="btn btn-primary newsletter-btn">Subscribe</button>
+            </div>
+            <p class="newsletter-note">No spam. <a href="/privacy-policy">Privacy Policy</a>.</p>
+          </form>
+          <div class="footer-social">
+            <a href="#" class="social-btn" aria-label="Facebook">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="X / Twitter">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.263 5.633 5.901-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" class="social-btn" aria-label="YouTube">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
           </div>
-          <p class="newsletter-note">No spam. Unsubscribe in one click. See our <a href="/privacy-policy">Privacy Policy</a>.</p>
-        </form>
-      </div>
-
-      <div class="footer-grid footer-grid-4">
+        </div>
         <div class="footer-col open">
           <h4>Information<i data-lucide="chevron-down" class="footer-acc-icon" aria-hidden="true"></i></h4>
           <ul class="footer-links">
@@ -4094,20 +4226,6 @@
             <a href="/contact"><i data-lucide="map-pin"></i> Fremont, CA — Mon–Fri 8AM–5PM PST</a>
             <a href="/chat"><i data-lucide="message-circle"></i> Live Chat</a>
           </div>
-          <div class="footer-social">
-            <a href="#" class="social-btn" aria-label="Facebook">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="X / Twitter">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.263 5.633 5.901-5.633zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            </a>
-            <a href="#" class="social-btn" aria-label="YouTube">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-          </div>
         </div>
       </div>
       <!-- Trust badges band: accreditations left, certified reviews right -->
@@ -4122,35 +4240,48 @@
           <a href="#" class="footer-badge" aria-label="BBB Accredited Business">
             <img src="images/blue.png" alt="BBB Accredited Business" />
           </a>
-          <a href="#" class="footer-badge footer-badge--bbb" aria-label="BBB Rating: A+, click for profile">
-            <img src="images/badge.png" alt="BBB Rating: A+" />
-            <span class="footer-badge-meta">
-              <span>As of 4/16/2026</span>
-              <span class="meta-link">Click for Profile</span>
-            </span>
-          </a>
         </div>
 
-        <a href="#" class="footer-reviews" aria-label="7,780 Certified Reviews, powered by YOTPO">
-          <div class="footer-reviews-stars" aria-hidden="true">
-            <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
-          </div>
-          <div class="footer-reviews-text">
-            <strong>7,780 Certified Reviews</strong>
-            <span>Powered by YOTPO</span>
-          </div>
+        <a href="#" class="footer-reviews" aria-label="7,786 Certified Reviews, powered by YOTPO">
+          <img src="images/yotpo-badge.png" alt="7,786 Certified Reviews – Powered by YOTPO" class="footer-yotpo-img" />
         </a>
       </div>
 
       <div class="footer-bottom">
         <p>© 2026 SF Cable, Inc. All rights reserved. Fremont, CA 94538</p>
         <div class="footer-payments">
-          <span class="payment-icon">VISA</span>
-          <span class="payment-icon">MC</span>
-          <span class="payment-icon">AMEX</span>
-          <span class="payment-icon">Discover</span>
-          <span class="payment-icon">PayPal</span>
-          <span class="payment-icon">PO</span>
+          <span class="payment-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 32" width="50" height="32" role="img" aria-label="Visa">
+              <rect width="50" height="32" rx="3.5" fill="#fff" stroke="#d0d0d0" stroke-width="0.6"/>
+              <text x="25" y="23" font-family="Arial,sans-serif" font-size="16" font-weight="900" font-style="italic" fill="#1a1f71" text-anchor="middle">VISA</text>
+            </svg>
+          </span>
+          <span class="payment-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 32" width="50" height="32" role="img" aria-label="Mastercard">
+              <rect width="50" height="32" rx="3.5" fill="#1a1a1a"/>
+              <circle cx="19" cy="16" r="10" fill="#EB001B"/>
+              <circle cx="31" cy="16" r="10" fill="#F79E1B" opacity="0.9"/>
+            </svg>
+          </span>
+          <span class="payment-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 32" width="50" height="32" role="img" aria-label="American Express">
+              <rect width="50" height="32" rx="3.5" fill="#007BC1"/>
+              <text x="25" y="21" font-family="Arial,sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="1.5">AMEX</text>
+            </svg>
+          </span>
+          <span class="payment-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 32" width="50" height="32" role="img" aria-label="Discover">
+              <rect width="50" height="32" rx="3.5" fill="#fff" stroke="#d0d0d0" stroke-width="0.6"/>
+              <circle cx="49" cy="16" r="13" fill="#F76F20"/>
+              <text x="4" y="20" font-family="Arial,sans-serif" font-size="7" font-weight="700" fill="#231f20" letter-spacing="0.3">DISCOVER</text>
+            </svg>
+          </span>
+          <span class="payment-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 32" width="50" height="32" role="img" aria-label="PayPal">
+              <rect width="50" height="32" rx="3.5" fill="#003087"/>
+              <text font-family="Arial,sans-serif" font-size="13" font-weight="700" y="22"><tspan x="4" fill="#009cde">Pay</tspan><tspan fill="#fff">Pal</tspan></text>
+            </svg>
+          </span>
         </div>
       </div>
     </div>
@@ -4196,18 +4327,37 @@
     initCatStrip('categoriesTrack', 'catPrev', 'catNext');
     initCatStrip('categoriesTrack2', 'catPrev2', 'catNext2');
 
-    /* Footer accordion (mobile ≤768px) */
+    /* Footer accordion (tablet/mobile ≤900px) */
     (function initFooterAccordion(){
-      const mq = window.matchMedia('(max-width: 768px)');
-      document.querySelectorAll('.footer-grid .footer-col h4').forEach(h => {
-        h.addEventListener('click', (e) => {
-          if (!mq.matches) return;
-          const col = h.parentElement;
-          const wasOpen = col.classList.contains('open');
-          col.parentElement.querySelectorAll('.footer-col').forEach(c => c.classList.remove('open'));
-          if (!wasOpen) col.classList.add('open');
+      const mqAll  = window.matchMedia('(max-width: 900px)');
+      const mq2col = window.matchMedia('(min-width: 481px) and (max-width: 900px)');
+      const cols   = Array.from(document.querySelectorAll('.footer-grid .footer-col'));
+
+      function setInitialState(){
+        cols.forEach((col, i) => {
+          if (!mqAll.matches) { col.classList.remove('open'); return; }
+          if (mq2col.matches) {
+            // 2-col: open col 0 (Info) and col 1 (Quick Links), close col 2 & 3
+            col.classList.toggle('open', i === 0 || i === 1);
+          } else {
+            // single-col mobile: only first open
+            col.classList.toggle('open', i === 0);
+          }
+        });
+      }
+
+      cols.forEach(col => {
+        const h = col.querySelector('h4');
+        if (!h) return;
+        h.addEventListener('click', () => {
+          if (!mqAll.matches) return;
+          col.classList.toggle('open');
         });
       });
+
+      setInitialState();
+      mqAll.addEventListener('change', setInitialState);
+      mq2col.addEventListener('change', setInitialState);
     })();
 
     /* Trust-bar auto-scroll slider (tablet ≤1100px and mobile ≤768px) */
