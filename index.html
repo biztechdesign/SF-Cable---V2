@@ -871,61 +871,49 @@
       .footer-grid > *:nth-child(5) { border-top: 1px solid rgba(255,255,255,.12); padding-top: 8px; border-bottom: none; }
       .footer-contact li { margin-bottom: 4px; }
     }
-    /* Footer badges/logos single row on mobile */
-    @media (max-width: 500px) {
-      .footer-badges       { flex-direction: row !important; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 8px; width: 100%; }
-      .footer-badge-group  {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        justify-content: center;
-        align-items: center;
-        gap: 6px !important;
-        width: auto;
-        flex-shrink: 1;
-      }
-      .footer-badge        { padding: 4px 6px !important; flex: 0 1 auto; min-width: 0; }
-      .footer-badge img    { height: 24px !important; max-width: none; width: auto; object-fit: contain; }
-      .footer-badge--bbb   { gap: 4px !important; padding: 4px 6px !important; }
-      .footer-badge--bbb img { height: 24px !important; }
+    /* Footer badges — uniform height per breakpoint, auto width */
+    @media (max-width: 900px) {
+      .footer-badges       { flex-wrap: nowrap !important; align-items: center; justify-content: center; gap: 8px; }
+      .footer-badge-group  { display: flex !important; flex-wrap: nowrap !important; align-items: center; gap: 8px !important; }
+      .footer-badge        { padding: 0 !important; }
       .footer-badge-meta   { display: none !important; }
-      .footer-reviews      { padding: 5px 8px; gap: 6px; flex-shrink: 0; }
-      .footer-reviews-stars { font-size: 9px; letter-spacing: .5px; }
-      .footer-reviews-text strong { font-size: 11px; }
-      .footer-reviews-text span   { font-size: 9px; letter-spacing: .3px; }
-      /* Payment icons single row */
+      .footer-badge img    { height: 40px !important; width: auto !important; object-fit: contain !important; }
+      .footer-badge--bbb   { gap: 0 !important; }
+      .footer-yotpo-img    { height: 40px !important; width: auto !important; }
+    }
+    @media (max-width: 500px) {
+      .footer-badges       { flex-direction: row !important; gap: 6px; }
+      .footer-badge-group  { gap: 6px !important; }
+      .footer-badge img    { height: 34px !important; }
+      .footer-yotpo-img    { height: 34px !important; }
       .footer-payments     { flex-wrap: wrap; gap: 4px; justify-content: center; width: 100%; }
-      .payment-icon svg    { width: 42px; height: 27px; }
+      .payment-icon svg    { width: 25px; height: 16px; }
     }
-    @media (max-width: 420px) {
-      .footer-badges       { gap: 6px; }
-      .footer-badge-group  { gap: 4px !important; }
-      .footer-badge        { padding: 3px 5px !important; }
-      .footer-badge img    { height: 22px !important; }
-      .footer-badge--bbb img { height: 22px !important; }
-      .footer-yotpo-img    { height: 34px; width: auto; }
-    }
-    @media (max-width: 360px) {
-      .footer-payments     { gap: 3px; }
-      .payment-icon svg    { width: 36px; height: 23px; }
+    @media (max-width: 430px) {
       .footer-badges       { gap: 5px; }
+      .footer-badge-group  { gap: 5px !important; }
+      .footer-badge img    { height: 29px !important; }
+      .footer-yotpo-img    { height: 29px !important; }
+    }
+    @media (max-width: 380px) {
+      .footer-badges       { gap: 4px; }
+      .footer-badge-group  { gap: 4px !important; }
+      .footer-badge img    { height: 25px !important; }
+      .footer-yotpo-img    { height: 25px !important; }
+    }
+    @media (max-width: 340px) {
+      .footer-badges       { gap: 3px; }
       .footer-badge-group  { gap: 3px !important; }
-      .footer-badge        { padding: 3px 4px !important; }
-      .footer-badge img    { height: 20px !important; }
-      .footer-badge--bbb img { height: 20px !important; }
-      .footer-yotpo-img    { height: 28px; }
-      .footer-reviews      { padding: 4px 6px; gap: 4px; }
-      .footer-reviews-text strong { font-size: 10px; }
-      .footer-reviews-text span   { font-size: 8px; }
+      .footer-badge img    { height: 22px !important; }
+      .footer-yotpo-img    { height: 22px !important; }
+      .footer-payments     { gap: 3px; }
+      .payment-icon svg    { width: 25px; height: 16px; }
     }
     @media (max-width: 320px) {
-      .footer-badges       { gap: 4px; }
       .footer-badge-group  { gap: 2px !important; }
-      .footer-badge        { padding: 2px 3px !important; }
-      .footer-badge img    { height: 18px !important; }
-      .footer-badge--bbb   { padding: 2px 3px !important; gap: 2px !important; }
-      .footer-badge--bbb img { height: 18px !important; }
-      .footer-yotpo-img    { height: 24px; }
-      .payment-icon svg    { width: 32px; height: 20px; }
+      .footer-badge img    { height: 20px !important; }
+      .footer-yotpo-img    { height: 20px !important; }
+      .payment-icon svg    { width: 25px; height: 16px; }
       .footer-payments     { gap: 2px; }
     }
     /* Utility bar chat pill */
@@ -1978,7 +1966,7 @@
       display: inline-flex; align-items: center; justify-content: center;
       border-radius: 4px; overflow: hidden; line-height: 0;
     }
-    .payment-icon svg { width: 42px; height: 27px; }
+    .payment-icon svg { width: 31px; height: 20px; }
     .footer-trust-strip {
       background: rgba(0,0,0,.25); padding: 6px 0; text-align: center;
       border-top: 1px solid rgba(255,255,255,.08);
@@ -2036,18 +2024,18 @@
       padding: 10px 0; border-top: 1px solid rgba(255,255,255,.15); border-bottom: 1px solid rgba(255,255,255,.15);
     }
     .footer-badge-group {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 15px;
     }
     .footer-badge {
       display: inline-flex; align-items: center; justify-content: center;
-      background: #fff; border-radius: 6px; padding: 6px 10px;
+      background: transparent; padding: 0;
       transition: transform var(--transition), box-shadow var(--transition);
     }
     .footer-badge:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.35); }
-    .footer-badge img { height: 26px; width: auto; display: block; }
-    .footer-badge[aria-label="BBB Accredited Business"] img { width: auto; object-fit: contain; }
-    .footer-badge--bbb { gap: 8px; padding: 5px 10px; }
-    .footer-badge--bbb img { height: 26px; }
+    .footer-badge img { height: 50px; width: auto; display: block; object-fit: contain; }
+    .footer-badge:not(.footer-badge--bbb) img { border-radius: 8px; }
+    .footer-badge--bbb { gap: 8px; padding: 0; }
+    .footer-badge--bbb img { height: 50px; border-radius: 0; }
     .footer-badge-meta {
       display: flex; flex-direction: column; line-height: 1.2;
       font-size: 15px; color: #1f2937; font-weight: 600; text-align: left;
@@ -2059,7 +2047,7 @@
       transition: transform var(--transition), opacity var(--transition);
     }
     .footer-reviews:hover { transform: translateY(-2px); opacity: .9; }
-    .footer-yotpo-img { height: 52px; width: auto; display: block; }
+    .footer-yotpo-img { height: 60px; width: auto; display: block; }
 
     /* ============================================================
        BACK TO TOP
@@ -2135,7 +2123,7 @@
       .footer-col h4       { margin-bottom: 0; }
       .footer-newsletter   { grid-template-columns: 1fr; gap: 20px; }
       .footer-newsletter-form { margin-left: 0; max-width: 100%; }
-      .footer-badges       { flex-direction: row; align-items: center; flex-wrap: wrap; gap: 14px; }
+      .footer-badges       { flex-direction: row; align-items: center; flex-wrap: nowrap; gap: 14px; }
       /* Usecase */
       .usecase-grid        { grid-template-columns: 1fr; }
       .usecase-sm-row      { grid-template-columns: 1fr 1fr; }
@@ -2257,13 +2245,12 @@
       .hero h1             { font-size: 19px; }
       .hero-desc           { display: none; }
       .hero-content        { text-align: center; }
-      .hero-actions        { flex-direction: column; gap: 8px; align-items: stretch; }
-      .hero-actions .btn   { width: 100%; }
+      .hero-actions        { flex-direction: row; flex-wrap: nowrap; gap: 8px; align-items: center; justify-content: center; }
       .hero-inner          { padding: 18px 16px 16px; min-height: 0; align-items: center; justify-content: center; }
       .hero-badge          { margin-bottom: 10px; font-size: 15px; padding: 4px 10px; }
       .hero-trust-line     { font-size: 15px; margin-bottom: 14px; }
-      .btn-lg              { height: 38px; padding: 0 20px; font-size: 15px; }
-      .hero-btn-secondary  { height: 38px; padding: 0 16px; font-size: 15px; justify-content: center; }
+      .btn-lg              { height: 38px; padding: 0 14px; font-size: 14px; }
+      .hero-btn-secondary  { height: 38px; padding: 0 12px; font-size: 14px; justify-content: center; }
       .hero-dots           { bottom: 12px; }
       /* Trust */
       .trust-bar           { padding: 14px 0 0; }
@@ -2372,9 +2359,7 @@
       .footer-bottom       { flex-direction: column; text-align: center; gap: 10px; }
       .footer-payments     { justify-content: center; flex-wrap: wrap; }
       .footer-badges       { align-items: center; justify-content: center; text-align: center; }
-      .footer-badge-group  { justify-content: center; gap: 14px; }
-      .footer-badge img    { height: 26px; }
-      .footer-badge--bbb img { height: 32px; }
+      .footer-badge-group  { justify-content: center; }
       /* Section */
       .section             { padding: 22px 0; }
       .section-sm          { padding: 16px 0; }
