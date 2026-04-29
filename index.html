@@ -2833,16 +2833,20 @@
     .brand-logo-item {
       transition: border-color var(--sf-transition), box-shadow var(--sf-transition);
     }
-    .product-card,
-    .category-card {
+    /* Product cards: full bordered card frame */
+    .product-card {
       border: 1px solid var(--gray-300);
       border-radius: var(--radius-lg);
       background: #ffffff;
     }
-    /* Override: cards stay still on hover, only border color shifts */
+    /* Category cards: no card frame — visually distinct from product cards */
+    .category-card {
+      border: none !important;
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+    /* Override: product cards stay still on hover, only border shifts */
     .product-card:hover,
-    .category-card:hover,
-    #categoriesTrack2 .category-card:hover,
     .deal-card:hover,
     .review-card:hover,
     .industry-card:hover,
@@ -2871,19 +2875,24 @@
       transform: none !important;
       transition: none !important;
     }
-    /* Category-card image wrapper: no stroke, transparent background */
+    /* Category image wrap: subtle border — hover turns brand-blue */
     .category-card .cat-img-wrap,
     #categoriesTrack2 .cat-img-wrap {
-      border: none;
+      border: 1.5px solid rgba(0, 38, 72, 0.14);
       border-radius: var(--radius-lg);
       background: transparent;
       box-shadow: none;
-      transition: none;
+      transition: border-color var(--sf-transition), box-shadow var(--sf-transition);
     }
     .category-card:hover .cat-img-wrap,
     #categoriesTrack2 .category-card:hover .cat-img-wrap {
-      border: none;
-      box-shadow: none;
+      border-color: var(--sf-primary-cta);
+      box-shadow: 0 2px 10px rgba(0, 141, 255, 0.14);
+    }
+    /* Category title turns brand-blue on hover */
+    .category-card:hover h3,
+    #categoriesTrack2 .category-card:hover h3 {
+      color: var(--sf-primary-cta);
     }
     .cat-img-wrap img { mix-blend-mode: normal; }
     /* Equal top + bottom breathing room for category cards */
@@ -2892,7 +2901,6 @@
       padding: 8px 8px 16px;
     }
     .cat-text { padding-bottom: 4px; }
-    .category-card:hover h3 { color: var(--sf-primary-dark); }
     /* Disable transform on review-card / nav buttons */
     .cat-nav-btn:active,
     .slider-nav:active,
@@ -3233,7 +3241,7 @@
 
     /* ---------- 12c. Responsive header (mobile only — desktop unchanged) ---------- */
 
-    /* 769px–900px: single row = Logo | Search | Account + Cart + Hamburger */
+    /* 769px–900px: single row = Logo | Search | icons */
     @media (max-width: 900px) {
       .mobile-header-actions { display: flex; flex-shrink: 0; gap: 6px; margin-left: 0; }
       .mobile-menu-toggle    { display: flex; }
@@ -3247,22 +3255,50 @@
       }
       .logo                  { order: 1; flex-shrink: 0; }
       .header-search-wrap    { order: 2; flex: 1 1 auto; min-width: 0; max-width: none; }
-      .mobile-header-actions { order: 3; }
+      .mobile-header-actions { order: 3; gap: 10px; }
+      .mobile-header-btn,
+      .mobile-menu-toggle    { min-width: 40px; min-height: 40px; width: 40px; height: 40px; }
     }
 
-    /* ≤768px: Logo + 3 icons on row 1, search on row 2 */
+    /* ≤768px: Logo + icons on row 1, search on row 2 */
     @media (max-width: 768px) {
       .header-mid { padding: 10px 0; gap: 6px; flex-wrap: wrap; }
       .logo                  { order: 1; flex-shrink: 0; }
-      .mobile-header-actions { order: 2; margin-left: auto; }
+      .mobile-header-actions { order: 2; margin-left: auto; gap: 10px; }
+      .mobile-header-btn,
+      .mobile-menu-toggle    { min-width: 40px; min-height: 40px; width: 40px; height: 40px; }
       .header-search-wrap    { order: 3; flex: 1 1 100%; max-width: none; margin-top: 8px; }
     }
 
-    /* ≤480px: shrink logo to keep logo + 3 icons on one line */
+    /* ≤480px: shrink logo so 4 icons still fit on one line */
     @media (max-width: 480px) {
       .logo img              { height: 24px; }
-      .mobile-header-btn     { width: 30px; height: 30px; }
-      .mobile-menu-toggle    { width: 30px; height: 30px; margin-left: 0; }
+      .mobile-header-actions { gap: 6px; }
+      .mobile-header-btn,
+      .mobile-menu-toggle    { min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
+    }
+
+    /* ≤360px: shrink logo, keep icons at 36px */
+    @media (max-width: 360px) {
+      .header-mid            { gap: 4px; }
+      .logo img              { height: 18px; }
+      .mobile-header-actions { gap: 4px; }
+      .mobile-header-btn,
+      .mobile-menu-toggle    { min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
+      .mobile-header-btn svg.lucide,
+      .mobile-menu-toggle svg.lucide { width: 18px; height: 18px; }
+    }
+
+    /* ≤320px: shrink logo further, icons stay 36px */
+    @media (max-width: 320px) {
+      .container             { padding: 0 6px; }
+      .header-mid            { gap: 2px; }
+      .logo img              { height: 16px; }
+      .mobile-header-actions { gap: 2px; }
+      .mobile-header-btn,
+      .mobile-menu-toggle    { min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
+      .mobile-header-btn svg.lucide,
+      .mobile-menu-toggle svg.lucide { width: 18px; height: 18px; }
     }
 
     /* ---------- 13. Mobile nav links / mobile background ---------- */
@@ -3376,6 +3412,7 @@
 
         <!-- Mobile actions (visible on mobile only) -->
         <div class="mobile-header-actions">
+          <a href="/help" class="mobile-header-btn" aria-label="Help"><i data-lucide="help-circle"></i></a>
           <a href="/account" class="mobile-header-btn" aria-label="My Account"><i data-lucide="user"></i></a>
           <a href="/cart" class="mobile-header-btn" aria-label="Cart">
             <i data-lucide="shopping-cart"></i>
