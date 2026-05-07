@@ -536,7 +536,7 @@
     }
     .qp-tab { padding: 6px 14px; }
     .quick-pick-label {
-      font-weight: 700; color: var(--dark); font-size: 17px;
+      font-weight: 700; color: var(--dark); font-size: 18px;
       display: inline-flex; align-items: center; gap: 6px;
       flex-shrink: 0;
     }
@@ -1064,7 +1064,7 @@
     ============================================================ */
     .cat-section-header {
       display: flex; align-items: center; justify-content: space-between;
-      margin-bottom: 20px; gap: 16px;
+      margin-bottom: 12px; gap: 16px;
     }
     .cat-section-header .section-title,
     #products-heading,
@@ -1122,40 +1122,50 @@
       overflow: hidden; padding: 18px;
       transition: all 0.25s ease;
     }
-    /* Bottom Categories strip — image fills card edge-to-edge, 6-col grid */
+    /* Categories grid — compact: 6-col desktop, fixed 88×88px images, no borders */
+    /* Image target size: 88×88px (transparent PNG recommended) */
     #categoriesTrack2 {
-      display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px;
+      display: grid; grid-template-columns: repeat(6, 1fr); column-gap: 2px; row-gap: 28px;
       overflow: visible;
     }
-    #categoriesTrack2 .category-card { width: auto; flex: initial; }
+    #categoriesTrack2 .category-card {
+      width: auto; flex: initial;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+    }
     #categoriesTrack2 .cat-img-wrap {
-      padding: 8px; background: transparent; border: 1px solid var(--gray-300);
-      overflow: hidden; position: relative;
-      aspect-ratio: 1 / 1; height: auto;
-      width: 100%;
+      width: 106px; height: 106px;
+      padding: 8px; box-sizing: border-box;
+      background: transparent; border: none;
+      overflow: hidden; position: static;
+      aspect-ratio: auto;
       display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
     }
     #categoriesTrack2 .cat-img-wrap img {
       width: 100%; height: 100%;
-      object-fit: contain; object-position: center center;
-      border-radius: var(--radius);
-      transform: scale(1.08);
-      transition: transform .4s ease;
+      object-fit: contain; object-position: center;
+      border-radius: 0;
+      transform: none;
+      transition: none;
     }
-    #categoriesTrack2 .category-card:hover .cat-img-wrap img { transform: scale(1.14); }
-    /* Tablet large (≤1280px): 4 columns */
-    @media (max-width: 1280px) { #categoriesTrack2 { grid-template-columns: repeat(4, 1fr); gap: 12px; } }
-    /* Tablet (≤900px): 3 columns */
-    @media (max-width: 900px)  {
-      #categoriesTrack2 { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    #categoriesTrack2 .category-card:hover .cat-img-wrap img { transform: none; }
+    /* ≤900px: 4 columns, 72px images */
+    @media (max-width: 900px) {
+      #categoriesTrack2 { grid-template-columns: repeat(4, 1fr); gap: 2px; }
+      #categoriesTrack2 .cat-img-wrap { width: 104px; height: 104px; padding: 0; box-sizing: border-box; }
+      #categoriesTrack2 .cat-img-wrap img { width: 100%; height: 100%; }
     }
-    /* Mobile large (≤600px): 2 columns */
-    @media (max-width: 600px)  {
-      #categoriesTrack2 { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    /* ≤600px: 3 columns, 60px images */
+    @media (max-width: 600px) {
+      #categoriesTrack2 { grid-template-columns: repeat(3, 1fr); gap: 2px; }
+      #categoriesTrack2 .cat-img-wrap { width: 86px; height: 86px; padding: 0; box-sizing: border-box; }
+      #categoriesTrack2 .cat-img-wrap img { width: 100%; height: 100%; }
     }
-    /* Small mobile (≤360px): 2 columns tighter */
-    @media (max-width: 360px) {
-      #categoriesTrack2 { gap: 8px; }
+    /* ≤400px: 3 columns, 50px images */
+    @media (max-width: 400px) {
+      #categoriesTrack2 .cat-img-wrap { width: 72px; height: 72px; padding: 0; box-sizing: border-box; }
+      #categoriesTrack2 .cat-img-wrap img { width: 100%; height: 100%; }
     }
     .cat-img-wrap img {
       width: 100%; height: 100%; object-fit: contain;
@@ -1167,7 +1177,7 @@
       font-size: 18px; font-weight: 700; color: var(--dark);
       line-height: 1.35; transition: color var(--transition);
     }
-    .cat-count { font-size: 15px; color: var(--gray-500); font-weight: 500; margin-top: 2px; display: block; }
+    .cat-count { font-size: 15px; color: var(--gray-500); font-weight: 400; margin-top: 0; display: block; }
 
     /* ============================================================
        FEATURED PRODUCTS
@@ -1271,12 +1281,13 @@
     /* Top-Rated & Featured Products — photographic images fill the frame, no plate */
     #products-grid .product-img-wrap,
     #feat-track .product-img-wrap {
-      background: transparent; padding: 16px; overflow: hidden;
+      background: transparent; padding: 0; overflow: hidden;
     }
+    #products-grid .product-img-wrap { height: 198px; }
     #products-grid .product-img-wrap img,
     #feat-track .product-img-wrap img {
       width: 100%; height: 100%; max-width: none; max-height: none;
-      object-fit: contain; object-position: center center;
+      object-fit: cover; object-position: center center;
       mix-blend-mode: multiply;
       transform: none;
       transform-origin: center center;
@@ -1294,7 +1305,7 @@
 
     /* Badges */
     .product-badges {
-      position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px;
+      position: absolute; top: 10px; left: 10px; display: flex; flex-direction: column; gap: 4px; z-index: 5;
     }
     .product-badges .badge { font-size: 13px; padding: 2px 8px; font-weight: 700; letter-spacing: .2px; }
 
@@ -2111,7 +2122,7 @@
       .mobile-header-actions { order: 2; margin-left: auto; }
       /* Hero */
       .hero                { margin-top: 10px; padding: 0 16px; }
-      .hero-slide          { background-position: center right; }
+      .hero-slide          { background-position: 50% 30%; }
       .hero-slide::before  {
         content: ''; position: absolute; inset: 0;
         background: linear-gradient(180deg, rgba(8,42,74,.78) 0%, rgba(8,42,74,.55) 55%, rgba(8,42,74,.25) 100%);
@@ -2382,9 +2393,9 @@
       .section-header-row  { flex-direction: row; align-items: center; gap: 8px; }
       .cat-section-header  { flex-direction: row; align-items: center; gap: 8px; }
       /* Scale down category grid images */
-      #categoriesTrack2 .cat-img-wrap img { transform: scale(1.0); }
-      #categoriesTrack2 .category-card:hover .cat-img-wrap img { transform: scale(1.06); }
-      #categoriesTrack2 .cat-img-wrap { padding: 6px; }
+      #categoriesTrack2 .cat-img-wrap img { transform: none; }
+      #categoriesTrack2 .category-card:hover .cat-img-wrap img { transform: none; }
+      #categoriesTrack2 .cat-img-wrap { padding: 0; border: none; }
       /* Force Save badge to own line so all cards share the same price row height */
       .price-save          { flex-basis: 100%; font-size: 12px; margin-top: 1px; }
       .product-price       { gap: 0 4px; }
@@ -2568,7 +2579,7 @@
     /* Help link in main header (desktop only) */
     .header-help {
       display: flex; align-items: center; gap: 8px; flex-shrink: 0;
-      color: rgba(255,255,255,.85); font-size: 15px; font-weight: 600;
+      color: rgba(255,255,255,.85); font-size: 14px; font-weight: 700;
       white-space: nowrap; transition: color var(--transition); text-decoration: none;
     }
     .header-help:hover { color: var(--white); }
@@ -2650,21 +2661,44 @@
     .site-header { background: #ffffff; }
     .site-header.scrolled { box-shadow: 0 2px 12px rgba(0,38,72,.10); }
     .header-mid { padding: 0; min-height: 72px; height: 72px; gap: 28px; }
+    /* 769–900px: tablet — flex row, restore desktop elements */
+    @media (min-width: 769px) and (max-width: 900px) {
+      /* Restore desktop elements hidden by base ≤900px rule */
+      .header-help           { display: flex !important; }
+      .all-cats-trigger      { display: flex !important; }
+      .nav-actions           { display: flex !important; margin-left: auto !important; }
+      .nav-bar               { background: var(--sf-primary-dark) !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+      .nav-bar > .container  { display: block !important; }
+      .nav-bar-inner         { display: flex !important; align-items: stretch; width: 100%; }
+      /* Hide mobile-only elements */
+      .mobile-header-actions { display: none !important; }
+      .mobile-contact-btns   { display: none !important; }
+      .mobile-shop-bar       { display: none !important; }
+      /* Flex row: logo | search (flex) | help */
+      .header-mid {
+        display: flex; flex-wrap: nowrap; align-items: center;
+        gap: 16px; padding: 10px 0; height: auto; min-height: 64px;
+        position: static;
+      }
+      .logo              { flex-shrink: 0; order: unset; }
+      .logo img          { height: 30px; }
+      .header-search-wrap {
+        flex: 1 1 auto; order: unset; min-width: 0;
+        position: static !important; transform: none !important;
+        left: auto !important; width: auto !important; max-width: none;
+        margin: 0;
+      }
+      .header-help       { flex-shrink: 0; margin-left: 0; position: static; order: unset; }
+    }
+    /* ≥901px: desktop — absolute centered search */
     @media (min-width: 901px) {
       .header-mid {
-        display: flex;
-        align-items: center;
-        position: relative;
-        gap: 0;
+        display: flex; align-items: center; position: relative; gap: 0;
       }
       .logo              { flex-shrink: 0; position: relative; z-index: 2; }
       .header-search-wrap {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-        width: clamp(320px, 55%, 700px);
-        max-width: 700px;
-        z-index: 1;
+        position: absolute; left: 50%; transform: translateX(-50%);
+        width: clamp(320px, 55%, 700px); max-width: 700px; z-index: 1;
       }
       .header-help       { margin-left: auto; flex-shrink: 0; position: relative; z-index: 2; }
     }
@@ -2772,6 +2806,7 @@
     }
     .btn-dark { background: var(--sf-primary-dark); color: #ffffff; }
     .btn-dark:hover { background: var(--sf-secondary-dark); }
+    .hero-actions { flex-wrap: nowrap !important; }
     .hero-btn-secondary {
       background: #ffffff;
       color: var(--sf-primary-dark);
@@ -2875,31 +2910,44 @@
       transform: none !important;
       transition: none !important;
     }
-    /* Category image wrap: subtle border — hover turns brand-blue */
+    /* Category image wrap: no border, rounded, hover bg on image area only */
     .category-card .cat-img-wrap,
     #categoriesTrack2 .cat-img-wrap {
-      border: 1.5px solid rgba(0, 38, 72, 0.14);
-      border-radius: var(--radius-lg);
+      border: none !important;
+      border-radius: 8px;
       background: transparent;
       box-shadow: none;
-      transition: border-color var(--sf-transition), box-shadow var(--sf-transition);
+      transition: background var(--sf-transition);
     }
+    /* Hover bg applies only to the image wrap, not the card or text */
     .category-card:hover .cat-img-wrap,
     #categoriesTrack2 .category-card:hover .cat-img-wrap {
-      border-color: var(--sf-primary-cta);
-      box-shadow: 0 2px 10px rgba(0, 141, 255, 0.14);
+      background: #e9eef2 !important;
+      border: none !important;
+      box-shadow: none !important;
     }
-    /* Category title turns brand-blue on hover */
+    /* Card: transparent, no hover background */
+    #categoriesTrack2 .category-card {
+      border-radius: 0;
+      background: transparent;
+      transition: none;
+      padding: 8px 4px 0;
+    }
+    #categoriesTrack2 .category-card:hover {
+      background: transparent !important;
+      transform: none !important;
+    }
+    /* Category title: inherit base styles (18px / 700 weight) */
+    #categoriesTrack2 .category-card h3 {
+      margin-top: 6px;
+    }
     .category-card:hover h3,
     #categoriesTrack2 .category-card:hover h3 {
       color: var(--sf-primary-cta);
     }
+    /* Restore product count */
+    #categoriesTrack2 .cat-count { display: block; }
     .cat-img-wrap img { mix-blend-mode: normal; }
-    /* Equal top + bottom breathing room for category cards */
-    .category-card,
-    #categoriesTrack2 .category-card {
-      padding: 8px 8px 0;
-    }
     .cat-text { padding-bottom: 4px; }
     /* Disable transform on review-card / nav buttons */
     .cat-nav-btn:active,
@@ -2959,10 +3007,24 @@
       color: #ffffff;
       border-color: var(--sf-primary-dark);
     }
+    /* Hero heading brand colors */
+    .hero-content { max-width: 50% !important; }
+    .hero h1 { color: var(--sf-primary-dark); font-size: clamp(22px, 5vw, 49px) !important; font-weight: 900 !important; }
+    .hero-slide::before { content: none !important; }
+    .hero-h1-dark { color: var(--sf-primary-dark); }
+    .hero-h1-blue { color: var(--sf-primary-cta); }
+    .hero-desc { color: rgba(0,38,72,.72) !important; }
+    @media (max-width: 600px) { .hero-content { max-width: 100% !important; } }
+    /* Deal banner floating badges — hidden, code preserved */
+    .deal-floating-badge { display: none !important; }
+
     /* Badges: use SF Cable system */
     .badge-red { background: #fff5e6; color: #b35900; border-color: #ffd9a8; }
     .badge-green { background: #e8faf0; color: #15803d; border-color: #bbf7d0; }
     .badge-yellow { background: #fff7d6; color: #856404; border-color: #ffe69a; }
+    /* Discount / sale badge — solid red, white text */
+    .badge-sale { background: #16a34a; color: #ffffff; border: none; font-weight: 700; letter-spacing: .3px; }
+    .badge-new  { background: #e02424; color: #ffffff; border: none; font-weight: 700; letter-spacing: .3px; }
     /* Section view links / tag labels */
     .section-view-link,
     .tag-label,
@@ -3168,7 +3230,7 @@
     /* ---------- 12b. Custom Cable Solutions deal-card variant ---------- */
     .deal-card.deal-custom {
       background: var(--sf-primary-dark);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: none;
       overflow: hidden;
       position: relative;
     }
@@ -3184,26 +3246,30 @@
     .deal-card.deal-custom .deal-card-content {
       position: relative; z-index: 2; max-width: 460px;
     }
-    /* Unified pill style for both deal cards */
+    /* Unified pill style for both deal cards — solid dark badge */
     .deal-card .deal-tag,
     .deal-card.deal-custom .deal-tag {
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      background: #1e293b;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
       color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.30);
+      border: none;
       text-transform: uppercase;
     }
     .deal-card .deal-tag i,
     .deal-card .deal-tag svg.lucide,
     .deal-card.deal-custom .deal-tag i,
     .deal-card.deal-custom .deal-tag svg.lucide { color: #ffffff; }
+    /* Title: dark navy — prominent on light card bg */
+    .deal-card h3,
     .deal-card.deal-custom h3 {
-      color: #ffffff;
+      color: var(--sf-primary-dark);
       letter-spacing: -0.3px;
     }
+    /* Description: muted gray — visually secondary to title */
+    .deal-card p,
     .deal-card.deal-custom p {
-      color: rgba(255, 255, 255, 0.85);
+      color: #6b7280;
       font-size: 16px;
       max-width: 380px;
       margin-bottom: 18px;
@@ -3241,64 +3307,104 @@
 
     /* ---------- 12c. Responsive header (mobile only — desktop unchanged) ---------- */
 
-    /* 769px–900px: single row = Logo | Search | icons */
-    @media (max-width: 900px) {
-      .mobile-header-actions { display: flex; flex-shrink: 0; gap: 6px; margin-left: 0; }
-      .mobile-menu-toggle    { display: flex; }
+    /* Mobile contact buttons (phone + chat) — hidden by default, shown ≤768px */
+    .mobile-contact-btns {
+      display: none;
+      align-items: center;
+      gap: 8px;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+    .mobile-contact-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 8px;
+      color: #ffffff; font-size: 18px; flex-shrink: 0;
+      transition: opacity 0.18s ease;
+    }
+    .mobile-contact-btn:hover { opacity: 0.85; }
+    .mobile-contact-btn svg.lucide { width: 20px; height: 20px; color: #ffffff; }
+    .mobile-contact-phone { background: #f97316; }
+    .mobile-contact-chat  { background: #22c55e; }
+
+    /* Mobile shop bar (row 3) — hidden by default, shown ≤768px */
+    .mobile-shop-bar {
+      display: none;
+      background: var(--sf-primary-dark);
+    }
+    .mobile-shop-bar-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: 48px; padding: 0;
+    }
+    .mobile-shop-trigger {
+      display: flex; align-items: center; gap: 8px;
+      color: #ffffff; font-size: 15px; font-weight: 600;
+      padding: 0 4px; background: none; border: none;
+      cursor: pointer; font-family: var(--font);
+      min-height: 48px;
+    }
+    .mobile-shop-trigger svg.lucide { width: 22px; height: 22px; color: #ffffff; }
+    .mobile-shop-trigger .icon-close { display: none; }
+    .mobile-shop-trigger.is-open .icon-menu { display: none; }
+    .mobile-shop-trigger.is-open .icon-close { display: inline-block; }
+    .mobile-shop-icons {
+      display: flex; align-items: center; gap: 0;
+    }
+    .mobile-shop-icon-btn {
+      display: flex; align-items: center; justify-content: center;
+      width: 44px; height: 48px; color: #ffffff; position: relative;
+      transition: color 0.18s ease;
+    }
+    .mobile-shop-icon-btn:hover { color: var(--sf-primary-cta); }
+    .mobile-shop-icon-btn svg.lucide { width: 22px; height: 22px; color: inherit; }
+    .mobile-shop-cart-count {
+      position: absolute; top: 6px; right: 4px;
+      background: var(--sf-primary-cta); color: #ffffff;
+      font-size: 10px; font-weight: 700; min-width: 16px; height: 16px;
+      border-radius: 100px; display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+
+    /* ≤768px: revised 3-row mobile header */
+    @media (max-width: 768px) {
+      /* Hide old icon row — replaced by contact-btns + mobile-shop-bar */
+      .mobile-header-actions { display: none !important; }
       .header-help           { display: none !important; }
+
+      /* Row 1: Logo (left) + contact buttons (right) */
       .header-mid {
         height: auto; min-height: auto;
-        padding: 14px 0;
-        gap: 10px;
-        flex-wrap: nowrap;
-        align-items: center;
+        padding: 10px 0; gap: 6px;
+        flex-wrap: wrap; align-items: center;
       }
       .logo                  { order: 1; flex-shrink: 0; }
-      .header-search-wrap    { order: 2; flex: 1 1 auto; min-width: 0; max-width: none; }
-      .mobile-header-actions { order: 3; gap: 10px; }
-      .mobile-header-btn,
-      .mobile-menu-toggle    { min-width: 40px; min-height: 40px; width: 40px; height: 40px; }
+      .mobile-contact-btns   { display: flex; order: 2; margin-left: auto; }
+
+      /* Row 2: Search bar full width */
+      .header-search-wrap    { order: 3; flex: 1 1 100%; max-width: none; margin-top: 4px; min-width: 0; }
+
+      /* Row 3: mobile shop bar */
+      .mobile-shop-bar       { display: block; }
     }
 
-    /* ≤768px: Logo + icons on row 1, search on row 2 */
-    @media (max-width: 768px) {
-      .header-mid { padding: 10px 0; gap: 6px; flex-wrap: wrap; }
-      .logo                  { order: 1; flex-shrink: 0; }
-      .mobile-header-actions { order: 2; margin-left: auto; gap: 10px; }
-      .mobile-header-btn,
-      .mobile-menu-toggle    { min-width: 40px; min-height: 40px; width: 40px; height: 40px; }
-      .header-search-wrap    { order: 3; flex: 1 1 100%; max-width: none; margin-top: 8px; }
-    }
-
-    /* ≤480px: shrink logo so 4 icons still fit on one line */
+    /* ≤480px: shrink logo */
     @media (max-width: 480px) {
       .logo img              { height: 24px; }
-      .mobile-header-actions { gap: 6px; }
-      .mobile-header-btn,
-      .mobile-menu-toggle    { min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
+      .mobile-contact-btn    { width: 32px; height: 32px; }
+      .mobile-contact-btn svg.lucide { width: 18px; height: 18px; }
     }
 
-    /* ≤360px: shrink logo, keep icons at 36px */
+    /* ≤360px: shrink logo further */
     @media (max-width: 360px) {
       .header-mid            { gap: 4px; }
       .logo img              { height: 18px; }
-      .mobile-header-actions { gap: 4px; }
-      .mobile-header-btn,
-      .mobile-menu-toggle    { min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
-      .mobile-header-btn svg.lucide,
-      .mobile-menu-toggle svg.lucide { width: 18px; height: 18px; }
+      .mobile-contact-btns   { gap: 6px; }
     }
 
-    /* ≤320px: shrink logo further, icons stay 36px */
+    /* ≤320px */
     @media (max-width: 320px) {
       .container             { padding: 0 6px; }
       .header-mid            { gap: 2px; }
       .logo img              { height: 16px; }
-      .mobile-header-actions { gap: 2px; }
-      .mobile-header-btn,
-      .mobile-menu-toggle    { min-width: 36px; min-height: 36px; width: 36px; height: 36px; }
-      .mobile-header-btn svg.lucide,
-      .mobile-menu-toggle svg.lucide { width: 18px; height: 18px; }
     }
 
     /* ---------- 13. Mobile nav links / mobile background ---------- */
@@ -3338,12 +3444,16 @@
     }
 
     /* ---------- 16. Hero: full-bleed on mobile ---------- */
-    @media (max-width: 900px) {
-      .hero { padding: 0; margin-top: 0; max-width: 100%; }
+    @media (max-width: 768px) {
+      .hero { padding: 0; margin-top: 18px; max-width: 100%; }
       .hero-slider,
       .hero-slide,
       .hero-slide::before { border-radius: 0; }
-      .hero-inner { min-height: 280px; }
+      .hero-slide { background-image: url('images/hero banner responsive.png') !important; }
+      .hero-inner { min-height: 220px; padding: 24px 16px; justify-content: center; }
+      .hero-content { max-width: 100% !important; text-align: center; }
+      .hero-actions { justify-content: center; }
+      .hero-desc { max-width: 100%; }
     }
     @media (max-width: 600px) {
       .hero-inner { min-height: 240px; }
@@ -3376,7 +3486,7 @@
           <a href="tel:18882758755">1-888-275-8755</a>
         </span>
         <div class="top-bar-separator"></div>
-        <a href="/chat" class="top-bar-item" style="color:rgba(255,255,255,.7); text-decoration:none;">
+        <a href="/chat" class="top-bar-item" style="color:#ffffff; text-decoration:none;">
           <i data-lucide="message-circle"></i> Chat With Us
         </a>
       </div>
@@ -3410,7 +3520,17 @@
           <i data-lucide="help-circle"></i> Help
         </a>
 
-        <!-- Mobile actions (visible on mobile only) -->
+        <!-- Mobile contact buttons (phone + chat) — row 1 right side, ≤768px only -->
+        <div class="mobile-contact-btns">
+          <a href="tel:+18005557226" class="mobile-contact-btn mobile-contact-phone" aria-label="Call us">
+            <i data-lucide="phone"></i>
+          </a>
+          <a href="/live-chat" class="mobile-contact-btn mobile-contact-chat" aria-label="Live chat">
+            <i data-lucide="message-circle"></i>
+          </a>
+        </div>
+
+        <!-- Mobile actions (visible on tablet 769–900px only) -->
         <div class="mobile-header-actions">
           <a href="/help" class="mobile-header-btn" aria-label="Help"><i data-lucide="help-circle"></i></a>
           <a href="/account" class="mobile-header-btn" aria-label="My Account"><i data-lucide="user"></i></a>
@@ -3424,6 +3544,27 @@
           </button>
         </div>
 
+      </div>
+    </div>
+
+    <!-- Mobile shop bar — row 3, ≤768px only -->
+    <div class="mobile-shop-bar" id="mobile-shop-bar">
+      <div class="container">
+        <div class="mobile-shop-bar-inner">
+          <button class="mobile-shop-trigger" id="mobile-shop-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <i data-lucide="menu" class="icon-menu"></i>
+            <i data-lucide="x" class="icon-close"></i>
+            <span>Shop</span>
+          </button>
+          <div class="mobile-shop-icons">
+            <a href="/help" class="mobile-shop-icon-btn" aria-label="Help"><i data-lucide="help-circle"></i></a>
+            <a href="/account" class="mobile-shop-icon-btn" aria-label="My Account"><i data-lucide="user"></i></a>
+            <a href="/cart" class="mobile-shop-icon-btn" aria-label="Cart">
+              <i data-lucide="shopping-cart"></i>
+              <span class="mobile-shop-cart-count" aria-live="polite">0</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -3893,7 +4034,7 @@
             <div class="container">
               <div class="hero-inner">
                 <div class="hero-content">
-                  <h1 id="hero-heading">Cables, Adapters &amp; Connectors —<br>Shipped Fast.</h1>
+                  <h1 id="hero-heading"><span class="hero-h1-dark">Cables, Adapters &amp; Connectors —</span><br><span class="hero-h1-blue">Shipped Fast.</span></h1>
                   <p class="hero-desc">Free shipping over $75 · Same-day dispatch · Lifetime warranty on most cables.</p>
                   <div class="hero-actions">
                     <a href="/cables.html" class="btn btn-primary btn-lg"><i data-lucide="shopping-cart"></i> Shop All Cables</a>
@@ -4025,96 +4166,8 @@
       </div>
     </section>
 
-    <!-- HIDDEN: TRUST BAR (moved to footer) -->
-    <section class="trust-bar" style="display:none;" aria-label="Trust indicators">
-      <div class="container">
-        <div class="trust-items">
-          <div class="trust-item">
-            <div class="trust-icon"><i data-lucide="shield-check"></i></div>
-            <div class="trust-text">
-              <span class="trust-title">Lifetime Warranty</span>
-              <span class="trust-subtitle">On most cable products</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon"><i data-lucide="truck"></i></div>
-            <div class="trust-text">
-              <span class="trust-title">Same-Day Shipping</span>
-              <span class="trust-subtitle">On in-stock items</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon"><i data-lucide="rotate-ccw"></i></div>
-            <div class="trust-text">
-              <span class="trust-title">60-Day Returns</span>
-              <span class="trust-subtitle">Easy returns within 60 days</span>
-            </div>
-          </div>
-          <div class="trust-item">
-            <div class="trust-icon"><i data-lucide="headset"></i></div>
-            <div class="trust-text">
-              <span class="trust-title">Lifetime Tech Support</span>
-              <span class="trust-subtitle">Help from our product team</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CATEGORIES (hidden — replaced by grid version below) -->
-    <section class="section" style="padding:32px 0;display:none;" aria-labelledby="categories-heading">
-      <div class="container">
-        <div class="cat-section-header">
-          <div>
-
-            <h2 class="section-title" id="categories-heading">Categories</h2>
-          </div>
-          <div class="cat-nav-arrows">
-            <button class="cat-nav-btn" id="catPrev" aria-label="Scroll categories left"><i data-lucide="chevron-left"></i></button>
-            <button class="cat-nav-btn" id="catNext" aria-label="Scroll categories right"><i data-lucide="chevron-right"></i></button>
-          </div>
-        </div>
-        <div class="categories-track-wrap">
-          <div class="categories-grid" id="categoriesTrack">
-            <a href="/hdmi-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/Product15.jpg" alt="HDMI Cable"></div>
-              <div class="cat-text"><h3>HDMI Cables</h3><span class="cat-count">150+ Products</span></div>
-            </a>
-            <a href="/usb-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/Product2.jpg" alt="USB Cable"></div>
-              <div class="cat-text"><h3>USB Cables</h3><span class="cat-count">200+ Products</span></div>
-            </a>
-            <a href="/network-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/Product8.jpg" alt="Network Cable"></div>
-              <div class="cat-text"><h3>Network Cables</h3><span class="cat-count">300+ Products</span></div>
-            </a>
-            <a href="/fiber-optics.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/Product13.jpg" alt="Fiber Optic Cable"></div>
-              <div class="cat-text"><h3>Fiber Optics</h3><span class="cat-count">120+ Products</span></div>
-            </a>
-            <a href="/power-cords.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/powercoord.jpg" alt="Power Cord"></div>
-              <div class="cat-text"><h3>Power Cords</h3><span class="cat-count">180+ Products</span></div>
-            </a>
-            <a href="/adapters-connectors.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/connector2.jpg" alt="USB-C Adapter"></div>
-              <div class="cat-text"><h3>Adapters &amp; Connectors</h3><span class="cat-count">400+ Products</span></div>
-            </a>
-            <a href="/audio-video.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/Product10.jpg" alt="DisplayPort Cable"></div>
-              <div class="cat-text"><h3>Audio &amp; Video</h3><span class="cat-count">250+ Products</span></div>
-            </a>
-            <a href="/accessories.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/Product7.jpg" alt="Power Extension"></div>
-              <div class="cat-text"><h3>Accessories &amp; Tools</h3><span class="cat-count">350+ Products</span></div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CATEGORIES (duplicate) -->
-    <section class="section" style="padding:32px 0;" aria-labelledby="categories-heading-2">
+    <!-- CATEGORIES -->
+    <section class="section" style="padding:40px 0;" aria-labelledby="categories-heading-2">
       <div class="container">
         <div class="cat-section-header">
           <div>
@@ -4129,51 +4182,51 @@
         <div class="categories-track-wrap">
           <div class="categories-grid" id="categoriesTrack2">
             <a href="/power-cords.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-powercord.jpg" alt="Power Cord"></div>
+              <div class="cat-img-wrap"><img src="images/power.png" alt="Power Cord"></div>
               <div class="cat-text"><h3>Power Cords</h3><span class="cat-count">180+ Products</span></div>
             </a>
             <a href="/network-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-network.jpg" alt="Network Cable"></div>
+              <div class="cat-img-wrap"><img src="images/network.png" alt="Network Cable"></div>
               <div class="cat-text"><h3>Network Cables</h3><span class="cat-count">300+ Products</span></div>
             </a>
             <a href="/adapters-connectors.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/car-connect.jpg" alt="USB-C Adapter"></div>
+              <div class="cat-img-wrap"><img src="images/connectors.png" alt="USB-C Adapter"></div>
               <div class="cat-text"><h3>Adapters &amp; Connectors</h3><span class="cat-count">400+ Products</span></div>
             </a>
             <a href="/extension-cords.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat- extension cord.jpg" alt="Extension Cord"></div>
+              <div class="cat-img-wrap"><img src="images/Extension.png" alt="Extension Cord"></div>
               <div class="cat-text"><h3>Extension Cords</h3><span class="cat-count">55+ Products</span></div>
             </a>
             <a href="/hdmi-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-hdmi.jpg" alt="HDMI Cable"></div>
+              <div class="cat-img-wrap"><img src="images/hdmi.png" alt="HDMI Cable"></div>
               <div class="cat-text"><h3>HDMI Cables</h3><span class="cat-count">150+ Products</span></div>
             </a>
             <a href="/usb-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-usb.jpg" alt="USB Cable"></div>
+              <div class="cat-img-wrap"><img src="images/usb.png" alt="USB Cable"></div>
               <div class="cat-text"><h3>USB Cables</h3><span class="cat-count">200+ Products</span></div>
             </a>
             <a href="/fiber-optics.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/Cat-fo.jpg" alt="Fiber Optic Cable"></div>
+              <div class="cat-img-wrap"><img src="images/Fibreoptic.png" alt="Fiber Optic Cable"></div>
               <div class="cat-text"><h3>Fiber Optics</h3><span class="cat-count">120+ Products</span></div>
             </a>
             <a href="/audio-video.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-avcable.jpg" alt="Audio Video Cable"></div>
+              <div class="cat-img-wrap"><img src="images/audio.png" alt="Audio Video Cable"></div>
               <div class="cat-text"><h3>Audio &amp; Video</h3><span class="cat-count">90+ Products</span></div>
             </a>
             <a href="/accessories.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-accessories.jpg" alt="Cable Accessories"></div>
+              <div class="cat-img-wrap"><img src="images/accessories.png" alt="Cable Accessories"></div>
               <div class="cat-text"><h3>Accessories</h3><span class="cat-count">200+ Products</span></div>
             </a>
             <a href="/displayport-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-display.jpg" alt="DisplayPort Cable"></div>
+              <div class="cat-img-wrap"><img src="images/display.png" alt="DisplayPort Cable"></div>
               <div class="cat-text"><h3>DisplayPort</h3><span class="cat-count">60+ Products</span></div>
             </a>
             <a href="/coaxial-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat coaxial.jpg" alt="Coaxial Cable"></div>
+              <div class="cat-img-wrap"><img src="images/coaxial.png" alt="Coaxial Cable"></div>
               <div class="cat-text"><h3>Coaxial Cables</h3><span class="cat-count">45+ Products</span></div>
             </a>
             <a href="/serial-data-cables.html" class="category-card">
-              <div class="cat-img-wrap"><img src="images/cat-data.jpg" alt="Serial Data Cable"></div>
+              <div class="cat-img-wrap"><img src="images/data.png" alt="Serial Data Cable"></div>
               <div class="cat-text"><h3>Serial &amp; Data</h3><span class="cat-count">80+ Products</span></div>
             </a>
           </div>
@@ -4182,7 +4235,7 @@
     </section>
 
     <!-- FEATURED PRODUCTS -->
-    <section class="section" aria-labelledby="products-heading" style="padding-top:0;">
+    <section class="section" aria-labelledby="products-heading" style="padding:0 0 40px;">
       <div class="container">
         <div class="section-header">
           <div class="section-header-row">
@@ -4194,18 +4247,18 @@
         <div class="products-grid" id="products-grid">
           <article class="product-card" data-category="hdmi">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-red">Best Seller</span></div>
+              <div class="product-badges"><span class="badge badge-sale">SAVE 20%</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/hdmi1.jpg" alt="HDMI 2.0 High Speed Cable">
+              <img src="images/2.jpg" alt="HDMI 2.0 High Speed Cable">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/hdmi-2-0-cable.html">HDMI 2.0 High Speed Cable 4K@60Hz – 6 ft</a></h3>
               <div class="product-rating"><span class="stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></span><span class="rating-count">(324)</span></div>
-              <div class="product-price"><span class="price-current">$6.99</span><span class="price-old">$9.99</span><span class="price-save">Save 30%</span></div>
+              <div class="product-price"><span class="price-current">$5.59</span><span class="price-old">$6.99</span><span class="price-save">Save 20%</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-black is-selected" title="Black"></span><span class="product-swatch s-white" title="White"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4213,18 +4266,17 @@
 
           <article class="product-card" data-category="usb">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-green">In Stock</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/usb4.jpg" alt="USB-C to USB-A Cable">
+              <img src="images/3.jpg" alt="USB-C to USB-A Cable">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/usb-c-to-usb-a.html">USB-C to USB-A 3.0 Cable – 3 ft, 10Gbps</a></h3>
               <div class="product-rating"><span class="stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></span><span class="rating-count">(218)</span></div>
-              <div class="product-price"><span class="price-current">$5.49</span><span class="price-old">$7.99</span><span class="price-save">Save 31%</span></div>
+              <div class="product-price"><span class="price-current">$5.49</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-white is-selected" title="White"></span><span class="product-swatch s-navy" title="Navy"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4232,18 +4284,18 @@
 
           <article class="product-card" data-category="network">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-yellow">Bulk Pricing</span></div>
+              <div class="product-badges"><span class="badge badge-sale">SAVE 15%</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/9.jpg" alt="Cat6 Ethernet Cable">
+              <img src="images/4.jpg" alt="Cat6 Ethernet Cable">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/cat6-ethernet-cable.html">Cat6 Ethernet Patch Cable, Snagless – 10 ft</a></h3>
               <div class="product-rating"><span class="stars" aria-label="4.5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star-half"></i></span><span class="rating-count">(507)</span></div>
-              <div class="product-price"><span class="price-current">$4.29</span><span class="price-old">$5.99</span><span class="price-save">Save 28%</span></div>
+              <div class="product-price"><span class="price-current">$3.65</span><span class="price-old">$4.29</span><span class="price-save">Save 15%</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-black is-selected" title="Black"></span><span class="product-swatch s-blue" title="Blue"></span><span class="product-swatch s-navy" title="Navy"></span><span class="product-swatch s-red" title="Red"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4251,13 +4303,13 @@
 
           <article class="product-card" data-category="power">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-red">New</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/3.jpg" alt="IEC Power Cord">
+              <div class="product-badges"><span class="badge badge-new">New</span></div>
+              <img src="images/5.jpg" alt="IEC Power Cord">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/iec-power-cord.html">IEC C13 to NEMA 5-15P Power Cord – 6 ft, 10A</a></h3>
@@ -4275,12 +4327,12 @@
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/dp1.jpg" alt="DisplayPort Cable">
+              <img src="images/6.jpg" alt="DisplayPort Cable">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/displayport-cable.html">DisplayPort 1.4 Cable 8K@30Hz – 6 ft</a></h3>
               <div class="product-rating"><span class="stars" aria-label="4.5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star-half"></i></span><span class="rating-count">(142)</span></div>
-              <div class="product-price"><span class="price-current">$8.99</span><span class="price-old">$12.99</span><span class="price-save">Save 31%</span></div>
+              <div class="product-price"><span class="price-current">$8.99</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-black is-selected" title="Black"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4288,18 +4340,18 @@
 
           <article class="product-card" data-category="network">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-yellow">Bulk Pricing</span></div>
+              <div class="product-badges"><span class="badge badge-sale">SAVE 10%</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/FO.jpg" alt="Fiber Optic Patch Cable">
+              <img src="images/7.jpg" alt="Fiber Optic Patch Cable">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/fiber-optic-patch.html">LC to SC Fiber Optic Patch Cable, Single Mode – 3m</a></h3>
               <div class="product-rating"><span class="stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></span><span class="rating-count">(96)</span></div>
-              <div class="product-price"><span class="price-current">$12.99</span><span class="price-old">$18.99</span><span class="price-save">Save 32%</span></div>
+              <div class="product-price"><span class="price-current">$11.69</span><span class="price-old">$12.99</span><span class="price-save">Save 10%</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-yellow is-selected" title="Yellow"></span><span class="product-swatch s-blue" title="Blue"></span><span class="product-swatch s-cyan" title="Cyan"></span><span class="product-swatch s-aqua" title="Aqua"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4307,18 +4359,18 @@
 
           <article class="product-card" data-category="hdmi">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-red">Best Seller</span></div>
+              <div class="product-badges"><span class="badge badge-sale">SAVE 20%</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/HDMI to VGA Active Adapter.jpg" alt="HDMI to VGA Adapter">
+              <img src="images/8.jpg" alt="HDMI to VGA Adapter">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/hdmi-to-vga-adapter.html">HDMI to VGA Active Adapter with Audio Port</a></h3>
               <div class="product-rating"><span class="stars" aria-label="4.5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star-half"></i></span><span class="rating-count">(273)</span></div>
-              <div class="product-price"><span class="price-current">$11.99</span><span class="price-old">$15.99</span><span class="price-save">Save 25%</span></div>
+              <div class="product-price"><span class="price-current">$9.59</span><span class="price-old">$11.99</span><span class="price-save">Save 20%</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-black is-selected" title="Black"></span><span class="product-swatch s-white" title="White"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4331,12 +4383,13 @@
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/3.jpg" alt="USB 3.0 Hub">
+              <div class="product-badges"><span class="badge badge-new">New</span></div>
+              <img src="images/9.jpg" alt="USB 3.0 Hub">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/usb-3-hub-7-port.html">USB 3.0 7-Port Hub with Individual Switches</a></h3>
               <div class="product-rating"><span class="stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></span><span class="rating-count">(154)</span></div>
-              <div class="product-price"><span class="price-current">$24.99</span><span class="price-old">$34.99</span><span class="price-save">Save 29%</span></div>
+              <div class="product-price"><span class="price-current">$24.99</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-black is-selected" title="Black"></span><span class="product-swatch s-gray" title="Gray"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4344,18 +4397,17 @@
 
           <article class="product-card" data-category="power">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-green">In Stock</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/4.jpg" alt="IEC C13/C14 Power Cord">
+              <img src="images/10.jpg" alt="IEC C13/C14 Power Cord">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/c13-c14-cord.html">IEC C13/C14 Power Cord – 6 ft, 10A</a></h3>
               <div class="product-rating"><span class="stars" aria-label="4.5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star-half"></i></span><span class="rating-count">(215)</span></div>
-              <div class="product-price"><span class="price-current">$6.49</span><span class="price-old">$8.99</span><span class="price-save">Save 28%</span></div>
+              <div class="product-price"><span class="price-current">$6.49</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-black is-selected" title="Black"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4368,7 +4420,7 @@
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/5.jpg" alt="USB 2.0 A to B Cable">
+              <img src="images/11.jpg" alt="USB 2.0 A to B Cable">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/usb-ab-6ft.html">USB 2.0 A-Male to B-Male Cable – 6 ft</a></h3>
@@ -4381,18 +4433,17 @@
 
           <article class="product-card" data-category="power">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-red">Best Seller</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/8.jpg" alt="IEC C13/C14 Power Extension">
+              <img src="images/12.jpg" alt="IEC C13/C14 Power Extension">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/power-extension.html">IEC C13/C14 Power Extension – 10 ft</a></h3>
               <div class="product-rating"><span class="stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></span><span class="rating-count">(134)</span></div>
-              <div class="product-price"><span class="price-current">$9.99</span><span class="price-old">$13.99</span><span class="price-save">Save 29%</span></div>
+              <div class="product-price"><span class="price-current">$9.99</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-black is-selected" title="Black"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4400,18 +4451,17 @@
 
           <article class="product-card" data-category="network">
             <div class="product-img-wrap">
-              <div class="product-badges"><span class="badge badge-green">In Stock</span></div>
               <div class="product-hover-bar">
                 <button class="product-action-btn" aria-label="Add to wishlist" data-tooltip="Wishlist"><i data-lucide="heart"></i></button>
                 <button class="product-action-btn" aria-label="Compare" data-tooltip="Compare"><i data-lucide="arrow-left-right"></i></button>
                 <button class="product-action-btn" aria-label="Quick view" data-tooltip="Quick View"><i data-lucide="eye"></i></button>
               </div>
-              <img src="images/ethernet2.jpg" alt="Cat6a Shielded Cable">
+              <img src="images/13.jpg" alt="Cat6a Shielded Cable">
             </div>
             <div class="product-info">
               <h3 class="product-name"><a href="/cat6a-shielded.html">Cat6a Shielded Ethernet Cable – 7 ft, Blue</a></h3>
               <div class="product-rating"><span class="stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></span><span class="rating-count">(112)</span></div>
-              <div class="product-price"><span class="price-current">$7.99</span><span class="price-old">$10.99</span><span class="price-save">Save 27%</span></div>
+              <div class="product-price"><span class="price-current">$7.99</span></div>
               <div class="product-swatches" aria-label="Available colors"><span class="product-swatch s-blue is-selected" title="Blue"></span><span class="product-swatch s-black" title="Black"></span><span class="product-swatch s-white" title="White"></span></div>
             </div>
             <div class="product-footer"><button class="fav-btn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button><button class="add-to-cart"><i data-lucide="shopping-cart"></i> Add to Cart</button></div>
@@ -4434,127 +4484,8 @@
       </div>
     </section>
 
-    <!-- HIDDEN: SHOP BY APPLICATION (replaced in B2C layout) -->
-    <section class="section app-section" style="display:none;" aria-labelledby="app-heading">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title" id="app-heading">Shop by Application</h2>
-          <p class="section-subtitle">Not sure what specs you need? Browse by setup to find the right cables, adapters, and accessories faster.</p>
-        </div>
-
-        <div class="usecase-grid">
-          <a href="/home-theater" class="usecase-card" style="background-image:url('images/theater.jpg');">
-            <div class="usecase-body">
-              <h3>Home Theater</h3>
-              <p>HDMI cables, AV accessories, and wall plates for home entertainment setups</p>
-              <div class="usecase-chips">
-                <span class="usecase-chip">HDMI</span>
-                <span class="usecase-chip">Audio/Video</span>
-              </div>
-              <span class="usecase-cta">Shop Home Theater <i data-lucide="arrow-right"></i></span>
-            </div>
-          </a>
-
-          <a href="/server-room" class="usecase-card" style="background-image:url('images/server.jpg');">
-            <div class="usecase-body">
-              <h3>Server Room</h3>
-              <p>Ethernet, fiber, and power solutions for racks, servers, and IT environments</p>
-              <div class="usecase-chips">
-                <span class="usecase-chip">Cat6/Cat6a</span>
-                <span class="usecase-chip">Fiber</span>
-              </div>
-              <span class="usecase-cta">Explore Server Room <i data-lucide="arrow-right"></i></span>
-            </div>
-          </a>
-
-          <div class="usecase-sm-row">
-            <a href="/office-networking" class="usecase-card sm" style="background-image:url('images/office.jpg');">
-              <div class="usecase-body">
-                <h3>Office Networking</h3>
-                <p>Docking &amp; workstation essentials</p>
-                <div class="usecase-chips">
-                  <span class="usecase-chip">Ethernet</span>
-                  <span class="usecase-chip">USB-C</span>
-                </div>
-                <span class="usecase-cta">View Solutions <i data-lucide="arrow-right"></i></span>
-              </div>
-            </a>
-
-            <a href="/schools-government" class="usecase-card sm" style="background-image:url('images/school.jpg');">
-              <div class="usecase-body">
-                <h3>School / Government</h3>
-                <p>Classroom &amp; public space solutions</p>
-                <div class="usecase-chips">
-                  <span class="usecase-chip">Bulk Orders</span>
-                  <span class="usecase-chip">AV Setup</span>
-                </div>
-                <span class="usecase-cta">Browse Solutions <i data-lucide="arrow-right"></i></span>
-              </div>
-            </a>
-
-            <a href="/custom-oem" class="usecase-card sm" style="background-image:url('images/custom.jpg');">
-              <div class="usecase-body">
-                <h3>Custom / OEM</h3>
-                <p>Custom builds &amp; bulk orders</p>
-                <div class="usecase-chips">
-                  <span class="usecase-chip">Custom Lengths</span>
-                  <span class="usecase-chip">OEM</span>
-                </div>
-                <span class="usecase-cta">Request a Quote <i data-lucide="arrow-right"></i></span>
-              </div>
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- HIDDEN: BUSINESS / BULK SOLUTIONS (removed in B2C layout) -->
-    <section class="section bulk-section" style="display:none;" aria-labelledby="bulk-heading">
-      <div class="container">
-        <div class="bulk-inner">
-          <div class="bulk-content">
-
-            <h2 id="bulk-heading">Need Volume Pricing or Custom Cable Support?</h2>
-            <p>Get fast quotes, bulk discounts, and custom cable solutions for offices, schools, government, installers, and project-based buyers.</p>
-            <div class="bulk-ctas">
-              <a href="/get-quote" class="btn btn-primary btn-lg">
-                <i data-lucide="receipt"></i> Request a Quote
-              </a>
-              <a href="/contact" class="btn-secondary">
-                <i data-lucide="phone"></i> Contact Sales
-              </a>
-            </div>
-          </div>
-          <div class="bulk-values">
-            <div class="bulk-value">
-              <div class="bulk-value-icon"><i data-lucide="tags"></i></div>
-              <div>
-                <h3>Volume Pricing Available</h3>
-                <p>Tiered discounts starting at 10 units. Custom pricing for large orders, schools, and government agencies.</p>
-              </div>
-            </div>
-            <div class="bulk-value">
-              <div class="bulk-value-icon"><i data-lucide="ruler"></i></div>
-              <div>
-                <h3>Custom Lengths &amp; OEM Options</h3>
-                <p>Custom cable builds, private labeling, and project-based sourcing tailored to your specifications.</p>
-              </div>
-            </div>
-            <div class="bulk-value">
-              <div class="bulk-value-icon"><i data-lucide="headset"></i></div>
-              <div>
-                <h3>Fast Help for Business Orders</h3>
-                <p>Dedicated support for bulk buyers. Call 1-888-275-8755 or email sales@sfcable.com for same-day quotes.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- DEALS -->
-    <section class="section-sm" aria-label="Promotions and deals" style="padding:36px 0;">
+    <section class="section-sm" aria-label="Promotions and deals" style="padding:40px 0;">
       <div class="container">
         <div class="deals-grid">
           <a href="/get-quote" class="deal-card deal-custom">
@@ -4647,92 +4578,6 @@
         </div>
         <button class="footer-trust-next" aria-label="Next"><i data-lucide="chevron-right"></i></button>
         </div>
-      </div>
-    </section>
-
-    <!-- HIDDEN: TESTIMONIALS (removed in B2C layout) -->
-    <section class="section reviews-section" style="display:none;" aria-labelledby="reviews-heading">
-      <div class="container">
-        <div class="reviews-layout">
-
-          <!-- Left column: title + rating + arrows -->
-          <div class="reviews-left">
-            <div>
-              <h2 class="section-title" id="reviews-heading">What Our Customers Say</h2>
-              <p class="section-subtitle">Trusted by IT pros, installers, and procurement teams nationwide.</p>
-            </div>
-
-            <div class="reviews-nav">
-              <button class="reviews-nav-btn" id="revPrev" aria-label="Previous reviews"><i data-lucide="chevron-left"></i></button>
-              <button class="reviews-nav-btn" id="revNext" aria-label="Next reviews"><i data-lucide="chevron-right"></i></button>
-            </div>
-          </div>
-
-          <!-- Right column: review slider -->
-          <div class="reviews-slider-wrap">
-            <div class="reviews-slider" id="reviewsSlider">
-              <article class="review-card">
-                <div class="review-header">
-                  <div class="reviewer-avatar" style="background:var(--red);">MJ</div>
-                  <div class="reviewer-info">
-                    <div class="reviewer-name">Marcus J.</div>
-                    <div class="reviewer-company">IT Manager · TechCorp Inc.</div>
-                  </div>
-                </div>
-                <div class="review-stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-                <p class="review-text">We've been ordering Cat6 cables in bulk from SF Cable for 3 years. Quality is consistently excellent and shipping is always fast. Lifetime warranty gives us peace of mind.</p>
-                <div class="review-footer">
-                  <span class="review-verified"><i data-lucide="check-circle"></i> Verified Purchase</span>
-                  <span class="review-date">2 weeks ago</span>
-                </div>
-              </article>
-              <article class="review-card">
-                <div class="review-header">
-                  <div class="reviewer-avatar" style="background:var(--blue);">SR</div>
-                  <div class="reviewer-info">
-                    <div class="reviewer-name">Sandra R.</div>
-                    <div class="reviewer-company">Procurement · Unified School District</div>
-                  </div>
-                </div>
-                <div class="review-stars" aria-label="5 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i></div>
-                <p class="review-text">SF Cable's EDU pricing saved our district thousands. PO billing made procurement simple. Products arrived next day — very impressed!</p>
-                <div class="review-footer">
-                  <span class="review-verified"><i data-lucide="check-circle"></i> Verified Purchase</span>
-                  <span class="review-date">1 month ago</span>
-                </div>
-              </article>
-              <article class="review-card">
-                <div class="review-header">
-                  <div class="reviewer-avatar" style="background:var(--green);">DK</div>
-                  <div class="reviewer-info">
-                    <div class="reviewer-name">David K.</div>
-                    <div class="reviewer-company">AV Installer · ProAV Solutions</div>
-                  </div>
-                </div>
-                <div class="review-stars" aria-label="4 out of 5 stars"><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star" class="star-empty"></i></div>
-                <p class="review-text">Great selection of HDMI and DisplayPort cables at prices that make sense for contractors. Quick order feature saves me time on repeat orders.</p>
-                <div class="review-footer">
-                  <span class="review-verified"><i data-lucide="check-circle"></i> Verified Purchase</span>
-                  <span class="review-date">3 weeks ago</span>
-                </div>
-              </article>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="trustpilot-strip">
-          <span class="tp-logo"><i data-lucide="star"></i> Trustpilot</span>
-          <span class="tp-stars">
-            <span class="tp-star"><i data-lucide="star"></i></span>
-            <span class="tp-star"><i data-lucide="star"></i></span>
-            <span class="tp-star"><i data-lucide="star"></i></span>
-            <span class="tp-star"><i data-lucide="star"></i></span>
-            <span class="tp-star" style="background:#73cf8e;"><i data-lucide="star"></i></span>
-          </span>
-          <span class="tp-summary">4.6 out of 5 based on 147 reviews</span>
-        </div>
-
       </div>
     </section>
 
@@ -4968,14 +4813,21 @@
       start();
     })();
 
-    const toggle = document.getElementById('mobile-menu-toggle');
     const mobileNav = document.getElementById('mobile-nav');
-    toggle?.addEventListener('click', () => {
-      const isOpen = mobileNav.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', isOpen);
-      mobileNav.setAttribute('aria-hidden', !isOpen);
-      toggle.classList.toggle('is-open', isOpen);
-    });
+    function bindMenuToggle(btn) {
+      if (!btn || !mobileNav) return;
+      btn.addEventListener('click', () => {
+        const isOpen = mobileNav.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen);
+        mobileNav.setAttribute('aria-hidden', !isOpen);
+        btn.classList.toggle('is-open', isOpen);
+        /* keep both toggles in sync */
+        [document.getElementById('mobile-menu-toggle'), document.getElementById('mobile-shop-toggle')]
+          .forEach(t => t && t !== btn && t.classList.toggle('is-open', isOpen));
+      });
+    }
+    bindMenuToggle(document.getElementById('mobile-menu-toggle'));
+    bindMenuToggle(document.getElementById('mobile-shop-toggle'));
 
     /* Mega menu – All Categories (hover + click) */
     (() => {
